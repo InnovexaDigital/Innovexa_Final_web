@@ -1,16 +1,16 @@
 import { company, navItems, services, socialLinks } from "@/lib/site-data";
 import { Button } from "@/components/ui/button";
-import { InnovexaLogo } from "@/components/common/innovexa-logo";
+import { Logo } from "@/components/common/logo";
 
 const hrefFor = (item: string) => `#${item.toLowerCase()}`;
 
 export function Footer() {
   return (
-    <footer className="section-band border-t border-white/10 py-12">
+    <footer className="section-band border-t border-white/10 py-14 md:py-16">
       <div className="section-shell">
-        <div className="glass-dark grid gap-10 rounded-[1.5rem] p-6 md:grid-cols-[1.1fr_.7fr_.9fr_.8fr] md:p-8">
+        <div className="glass-dark grid gap-10 rounded-[1.5rem] p-6 md:grid-cols-[1.15fr_.75fr_.85fr_.8fr] md:p-8 lg:p-10">
           <div>
-            <InnovexaLogo />
+            <Logo className="w-[210px] md:w-[240px]" />
             <p className="mt-4 max-w-md leading-7 text-white/52">
               {company.tagline} Premium websites, mobile apps, AI automation, digital marketing, and creative content solutions.
             </p>
@@ -55,7 +55,7 @@ export function Footer() {
             </Button>
           </div>
         </div>
-        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/34 md:flex-row">
+        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/34 md:flex-row md:items-center">
           <span>(c) 2026 {company.name}. All rights reserved.</span>
           <span>{company.website} / Privacy / Terms / Security</span>
         </div>

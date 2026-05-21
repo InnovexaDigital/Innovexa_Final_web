@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SectionHeading } from "@/components/common/section-heading";
-import { InnovexaLogo } from "@/components/common/innovexa-logo";
+import { Logo } from "@/components/common/logo";
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
@@ -45,7 +45,7 @@ export function Contact() {
           <div data-gsap-reveal data-tilt className="glass-dark relative overflow-hidden rounded-[1.5rem] p-8">
             <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-cyan-glow/20 blur-[70px]" />
             <div className="relative flex items-center justify-between gap-4">
-              <InnovexaLogo compactText />
+              <Logo compactText className="w-[170px] sm:w-[186px] md:w-[204px]" />
               <div className="grid h-16 w-16 place-items-center rounded-full bg-cyan-glow/10 text-cyan-glow ring-1 ring-cyan-glow/25">
                 <Sparkles className="h-7 w-7" />
               </div>

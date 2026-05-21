@@ -40,6 +40,7 @@ export type PortfolioProject = {
   title: string;
   type: string;
   category: string;
+  url?: string;
   status?: string;
   description: string;
   features: string[];
@@ -103,59 +104,49 @@ export const aiSolutions = [
 
 export const portfolio: PortfolioProject[] = [
   {
-    title: "KL STALL EVENT MANAGEMENT",
-    type: "Event management booking platform",
+    title: "KL Stall App",
+    type: "Business Management Platform",
     category: "Web App",
-    description:
-      "A modern event management web application for event booking with seamless online and offline booking workflows.",
-    features: ["Event booking", "Service showcase", "Contact flow", "Event inquiry management"],
+    url: "https://k-lstall-app.vercel.app/",
+    description: "Digital platform for stall booking and event business management.",
+    features: ["Event booking", "Management dashboard", "Booking workflows"],
     gradient: "from-cyan-400 via-blue-600 to-violet-800"
   },
   {
-    title: "SRI SIVASAKTHI PRINTERS",
-    type: "Business website",
+    title: "Siva Sakthi Printers",
+    type: "Printing Business Website",
     category: "Website",
-    description:
-      "A digital printing business website featuring flex banners, bill books, print services, and WhatsApp quote generation.",
-    features: ["Print service pages", "Quote journey", "WhatsApp lead flow", "Local business SEO"],
+    url: "https://sivasakthiprinters.netlify.app/",
+    description: "Professional website for printing services and customer engagement.",
+    features: ["Service pages", "Quote flow", "Contact integration"],
     gradient: "from-fuchsia-500 via-violet-700 to-slate-950"
   },
   {
-    title: "ZENVORA EARTH",
-    type: "Export business website",
+    title: "Export Demo Site",
+    type: "Export Business Website",
     category: "Export",
-    description:
-      "A premium turmeric exporter website with batch traceability and international quote request workflow.",
-    features: ["Exporter positioning", "Batch traceability", "International inquiry flow", "Premium product storytelling"],
+    url: "https://exportdemosite.netlify.app/",
+    description: "Corporate export-focused website built for product showcasing and inquiries.",
+    features: ["Product showcase", "Inquiry forms", "International focus"],
     gradient: "from-amber-300 via-emerald-600 to-slate-950"
   },
   {
-    title: "DANNY STORE",
-    type: "Ecommerce storefront",
+    title: "Danny Stationary Shop",
+    type: "E-Commerce Storefront",
     category: "Commerce",
-    description:
-      "A Korean stationery/lifestyle storefront with cart system and WhatsApp order confirmation.",
-    features: ["Product catalog", "Cart system", "WhatsApp order confirmation", "Lifestyle storefront UI"],
+    url: "https://danny-stationary-shop.netlify.app/",
+    description: "Online shopping website for stationery products and retail sales.",
+    features: ["Product catalog", "Cart flow", "Checkout"],
     gradient: "from-pink-400 via-purple-600 to-blue-950"
   },
   {
-    title: "GALAXY SALON & BEAUTY ACADEMY",
-    type: "Business website + billing software",
-    category: "Software",
-    description:
-      "Website + business management software solution for a salon and beauty academy.",
-    features: ["Business website", "Billing workflow", "Customer management", "Service operations"],
+    title: "Galaxy Beauty Academy",
+    type: "Education / Academy Website",
+    category: "Website",
+    url: "https://www.galaxybeautyacademy.com/",
+    description: "Professional academy website for beauty training programs and admissions.",
+    features: ["Course listings", "Admissions", "Program details"],
     gradient: "from-rose-300 via-fuchsia-700 to-slate-950"
-  },
-  {
-    title: "MR FISH KITCHEN",
-    type: "Mobile application",
-    category: "Mobile",
-    status: "Currently in development",
-    description:
-      "A mobile application experience currently in development for food ordering and customer engagement.",
-    features: ["Mobile UX", "Order journey", "Customer engagement", "Development roadmap"],
-    gradient: "from-sky-300 via-cyan-700 to-slate-950"
   }
 ];
 

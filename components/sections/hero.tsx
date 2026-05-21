@@ -13,12 +13,12 @@ const HeroScene = dynamic(() => import("@/three/hero-scene").then((m) => m.HeroS
 
 export function Hero() {
   return (
-    <section id="home" className="section-band relative min-h-screen overflow-hidden bg-luxury-radial pb-16 pt-32">
+    <section id="home" className="section-band relative min-h-screen overflow-hidden bg-luxury-radial pb-16 pt-28 sm:pt-32 lg:pt-36">
       <div className="absolute inset-0 bg-mesh-grid bg-[size:58px_58px] opacity-[0.08]" />
       <div className="absolute left-[12%] top-24 h-72 w-72 rounded-full bg-[#00D4FF]/20 blur-[120px]" />
       <div className="absolute right-[8%] top-32 h-96 w-96 rounded-full bg-[#6D28D9]/20 blur-[140px]" />
-      <div className="section-shell grid min-h-[calc(100vh-9rem)] items-center gap-10 lg:grid-cols-[1.02fr_.98fr]">
-        <div className="relative z-10">
+      <div className="section-shell grid min-h-[calc(100vh-8rem)] items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,.95fr)] lg:gap-14 xl:gap-16">
+        <div className="relative z-10 max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1, delay: 1.75 }}
-            className="premium-text font-display text-5xl font-semibold leading-[0.96] md:text-7xl xl:text-[5.65rem]"
+            className="premium-text font-display text-5xl font-semibold leading-[0.94] md:text-7xl xl:text-[5.5rem]"
           >
             Transforming Business Through Technology & Creativity
           </motion.h1>
@@ -40,7 +40,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.92 }}
-            className="mt-7 max-w-2xl text-lg leading-8 text-white/68 md:text-xl"
+            className="mt-6 max-w-2xl text-lg leading-8 text-white/68 md:text-xl"
           >
             We engineer premium digital experiences, AI automation systems, growth campaigns, and enterprise-grade products.
           </motion.p>
@@ -48,7 +48,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2.08 }}
-            className="mt-9 flex flex-col gap-4 sm:flex-row"
+            className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap"
           >
             <Button asChild size="lg" variant="premium">
               <a href="#contact">Start Your Project <ArrowRight className="h-5 w-5" /></a>
@@ -58,14 +58,14 @@ export function Hero() {
             </Button>
           </motion.div>
 
-          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="mt-11 grid grid-cols-2 gap-3 md:grid-cols-4">
             {heroMetrics.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 2.18 + index * 0.08 }}
-                className="glass-dark rounded-2xl p-4 ring-1 ring-cyan-glow/5"
+                className="glass-dark min-h-[108px] rounded-2xl p-4 ring-1 ring-cyan-glow/5"
               >
                 <div className="font-display text-2xl font-bold text-white">{stat.value}</div>
                 <div className="mt-1 text-xs leading-5 text-white/48">{stat.label}</div>
@@ -74,7 +74,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative h-[540px] min-h-[420px]" data-parallax="-4">
+        <div className="relative h-[520px] min-h-[420px] lg:h-[580px] xl:h-[640px]" data-parallax="-4">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-glow/15 via-violet-glow/20 to-primary/10 blur-3xl" />
           <HeroScene />
           <div className="pointer-events-none absolute left-0 top-10 space-y-3 md:left-8">

@@ -17,5 +17,6 @@ export const useUIStore = create<UIState>((set) => ({
   menuOpen: false,
   setMenuOpen: (open) => set({ menuOpen: open }),
   theme: "dark",
-  setTheme: (theme) => set({ theme })
+  // Force theme to dark only — ignore attempts to set light mode.
+  setTheme: (_theme) => set({ theme: "dark" })
 }));

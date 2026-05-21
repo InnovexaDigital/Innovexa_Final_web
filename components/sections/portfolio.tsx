@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useMemo, useState } from "react";
 import { portfolio, type PortfolioProject } from "@/lib/site-data";
 import { SectionHeading } from "@/components/common/section-heading";
@@ -11,7 +11,6 @@ const categories = ["All", ...Array.from(new Set(portfolio.map((item) => item.ca
 
 export function Portfolio() {
   const [active, setActive] = useState("All");
-  const [selected, setSelected] = useState<PortfolioProject | null>(null);
   const visible = useMemo(
     () => (active === "All" ? portfolio : portfolio.filter((item) => item.category === active)),
     [active]
@@ -44,11 +43,12 @@ export function Portfolio() {
         <motion.div layout className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {visible.map((item) => (
-              <motion.button
-                type="button"
+              <motion.a
                 layout
                 key={item.title}
-                onClick={() => setSelected(item)}
+                href={item.url ?? '#'}
+                target="_blank"
+                rel="noopener noreferrer"
                 data-tilt
                 initial={{ opacity: 0, scale: 0.94 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -68,41 +68,21 @@ export function Portfolio() {
                   <div className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition group-hover:rotate-45">
                     <ArrowUpRight className="h-5 w-5" />
                   </div>
+                  <div className="absolute left-5 top-5 rounded-full bg-black/30 px-3 py-1 text-xs text-white/90 backdrop-blur flex items-center gap-2">
+                    <span className="text-[11px]">Live Project</span>
+                    <ArrowUpRight className="h-3 w-3" />
+                  </div>
                 </div>
                 <div className="p-5">
                   <p className="text-sm leading-7 text-white/55">{item.description}</p>
                 </div>
-              </motion.button>
+              </motion.a>
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
 
-      <AnimatePresence>
-        {selected && (
-          <motion.div className="fixed inset-0 z-[80] grid place-items-center bg-black/70 p-4 backdrop-blur-md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <motion.div initial={{ y: 32, scale: 0.96 }} animate={{ y: 0, scale: 1 }} exit={{ y: 32, scale: 0.96 }} className="gradient-border glass-dark max-w-2xl rounded-[1.5rem] p-6">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.22em] text-cyan-100">{selected.type}</p>
-                  <h3 className="mt-3 font-display text-3xl font-semibold text-white">{selected.title}</h3>
-                </div>
-                <button onClick={() => setSelected(null)} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white" aria-label="Close project preview">
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-              <p className="mt-5 leading-8 text-white/62">{selected.description}</p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {selected.features.map((feature) => (
-                  <div key={feature} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/68">
-                    {feature}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Modal preview removed — cards open live projects in a new tab */}
     </section>
   );
 }
