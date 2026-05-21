@@ -34,6 +34,51 @@ body {
   font-family: var(--font-inter), Inter, sans-serif;
 }
 
+html.light {
+  --background: 220 45% 97%;
+  --foreground: 224 45% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 45% 8%;
+  --border: 220 24% 82%;
+  --input: 220 32% 92%;
+}
+
+html.light body {
+  background:
+    radial-gradient(circle at 58% 4%, rgba(0, 212, 255, 0.14), transparent 24%),
+    radial-gradient(circle at 43% 22%, rgba(109, 40, 217, 0.12), transparent 26%),
+    linear-gradient(135deg, #f8fbff 0%, #edf2ff 48%, #ffffff 100%);
+  color: hsl(var(--foreground));
+}
+
+html.light .glass,
+html.light .glass-dark {
+  border-color: rgba(11, 15, 26, 0.12);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.5));
+}
+
+html.light .text-white,
+html.light .text-white\/80,
+html.light .text-white\/78,
+html.light .text-white\/75,
+html.light .text-white\/70,
+html.light .text-white\/68,
+html.light .text-white\/62,
+html.light .text-white\/60,
+html.light .text-white\/58,
+html.light .text-white\/56,
+html.light .text-white\/55,
+html.light .text-white\/54,
+html.light .text-white\/52,
+html.light .text-white\/50,
+html.light .text-white\/48,
+html.light .text-white\/45,
+html.light .text-white\/42,
+html.light .text-white\/36,
+html.light .text-white\/34 {
+  color: rgba(11, 15, 26, 0.78);
+}
+
 body::before {
   content: "";
   pointer-events: none;

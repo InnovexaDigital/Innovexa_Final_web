@@ -2,27 +2,28 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://innovexa.vercel.app"),
+  metadataBase: new URL("https://innovexa.digital"),
   title: {
-    default: "INNOVEXA | AI, Design and Digital Growth Systems",
-    template: "%s | INNOVEXA"
+    default: "INNOVEXA DIGITAL | Build. Automate. Scale.",
+    template: "%s | INNOVEXA DIGITAL"
   },
   description:
-    "INNOVEXA builds enterprise-grade websites, applications, AI automations, growth systems, and digital experiences that transform businesses.",
+    "Innovexa Digital transforms businesses through websites, mobile apps, AI automation, digital marketing, and creative content solutions.",
   keywords: [
-    "INNOVEXA",
+    "INNOVEXA DIGITAL",
     "AI automation",
     "website development",
-    "app development",
+    "mobile app development",
+    "billing software",
     "digital marketing",
-    "enterprise software"
+    "Chennai digital agency"
   ],
   openGraph: {
-    title: "INNOVEXA | Engineering Digital Growth",
+    title: "INNOVEXA DIGITAL | Build. Automate. Scale.",
     description:
-      "Enterprise-grade AI, design, automation, and digital growth systems.",
-    url: "https://innovexa.vercel.app",
-    siteName: "INNOVEXA",
+      "Premium websites, mobile apps, AI automation systems, growth campaigns, and creative digital experiences.",
+    url: "https://innovexa.digital",
+    siteName: "INNOVEXA DIGITAL",
     type: "website"
   },
   robots: {
@@ -38,9 +39,30 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "INNOVEXA DIGITAL",
+    url: "https://innovexa.digital",
+    email: "innovexa.digitalservices@gmail.com",
+    telephone: "+91 95660 61075",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Chennai",
+      addressCountry: "IN"
+    },
+    sameAs: ["https://instagram.com/innovexa_digital"],
+    description:
+      "Innovexa Digital transforms businesses through technology, automation, AI, and creative digital experiences."
+  };
+
   return (
     <html lang="en" className="dark">
       <body className="noise antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
         {children}
       </body>
     </html>

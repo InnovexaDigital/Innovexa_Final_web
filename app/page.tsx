@@ -4,14 +4,15 @@ import { Preloader } from "@/components/common/preloader";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
+import { TrustStats } from "@/components/sections/trust-stats";
 import { Services } from "@/components/sections/services";
 import { Solutions } from "@/components/sections/solutions";
 import { Portfolio } from "@/components/sections/portfolio";
+import { Process } from "@/components/sections/process";
 import { WhyChoose } from "@/components/sections/why-choose";
 import { Testimonials } from "@/components/sections/testimonials";
-import { Pricing } from "@/components/sections/pricing";
 import { About } from "@/components/sections/about";
-import { Blog } from "@/components/sections/blog";
+import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
@@ -22,14 +23,15 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <TrustStats />
         <Services />
         <Solutions />
         <Portfolio />
+        <Process />
+        <About />
         <WhyChoose />
         <Testimonials />
-        <Pricing />
-        <About />
-        <Blog />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
