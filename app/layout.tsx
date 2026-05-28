@@ -51,7 +51,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       addressLocality: "Chennai",
       addressCountry: "IN"
     },
-    sameAs: ["https://instagram.com/innovexa_digital"],
+    sameAs: [
+      "https://instagram.com/innovexa_digital",
+      "https://linkedin.com/company/innovexa-digital",
+      "https://github.com/innovexa-digital"
+    ],
     description:
       "Innovexa Digital transforms businesses through technology, automation, AI, and creative digital experiences."
   };

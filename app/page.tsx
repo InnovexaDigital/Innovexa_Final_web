@@ -19,7 +19,7 @@ export default function Home() {
     <LenisProvider>
       <AnimationProvider />
       <Navbar />
-      <main>
+      <main className="overflow-x-clip">
         <Hero />
         <TrustStats />
         <Services />

@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   BadgeCheck,
@@ -10,18 +11,15 @@ import {
   ClipboardCheck,
   Code2,
   Compass,
-  FileText,
   Film,
   Gauge,
   Globe2,
-  Instagram,
   Megaphone,
   MessageCircle,
   MonitorSmartphone,
   PenTool,
   Rocket,
   Search,
-  Share2,
   ShieldCheck,
   Smartphone,
   Sparkles,
@@ -29,6 +27,7 @@ import {
   Workflow,
   Zap
 } from "lucide-react";
+import { FaGithub, FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 
 export type Service = {
   title: string;
@@ -47,6 +46,12 @@ export type PortfolioProject = {
   gradient: string;
 };
 
+export type SocialLink = {
+  label: string;
+  href: string;
+  icon: ComponentType<{ className?: string }>;
+};
+
 export const company = {
   name: "INNOVEXA DIGITAL",
   tagline: "BUILD. AUTOMATE. SCALE.",
@@ -57,6 +62,8 @@ export const company = {
   location: "Chennai, India",
   whatsapp: "+91 95660 61075",
   instagram: "innovexa_digital",
+  linkedin: "innovexa-digital",
+  github: "innovexa-digital",
   website: "innovexa.digital"
 };
 
@@ -71,7 +78,7 @@ export const heroMetrics = [
 
 export const stats = [
   { label: "Launch-ready websites, apps, and systems", value: "25+" },
-  { label: "Services across tech, AI, growth, and content", value: "13" },
+  { label: "Services across tech, AI, growth, and content", value: "12" },
   { label: "Built from Chennai for local and global brands", value: "IN" },
   { label: "Business-first execution model", value: "ROI" }
 ];
@@ -82,10 +89,9 @@ export const services: Service[] = [
   { title: "Billing Software Development", icon: BarChart3, detail: "Custom billing, invoice, inventory, customer, and reporting systems for growing businesses." },
   { title: "AI Automation", icon: Workflow, detail: "Automation systems that remove repetitive work across sales, support, marketing, and operations." },
   { title: "Agentic AI Products", icon: BrainCircuit, detail: "AI agents that can qualify leads, trigger workflows, summarize data, and assist teams." },
-  { title: "Google Ads", icon: Target, detail: "Search and performance campaigns connected to landing pages, analytics, and lead quality." },
   { title: "Meta Ads", icon: Megaphone, detail: "Creative-led paid social campaigns for awareness, inquiries, retargeting, and growth." },
   { title: "SEO", icon: Search, detail: "Technical SEO, content structure, local discovery, and long-term organic visibility." },
-  { title: "Social Media Management", icon: Share2, detail: "Content calendars, creative direction, publishing, campaign ideas, and performance rhythm." },
+  { title: "Performance Strategy", icon: Target, detail: "Cross-channel performance planning that aligns paid campaigns, landing pages, and lead quality." },
   { title: "Poster Design", icon: Brush, detail: "Premium posters, launch creatives, campaign visuals, and brand communication assets." },
   { title: "Video Editing", icon: Film, detail: "High-retention edits for reels, launches, ads, testimonials, and business storytelling." },
   { title: "Video Shooting", icon: Camera, detail: "On-ground business, product, event, and brand shoots planned for usable marketing output." },
@@ -96,7 +102,6 @@ export const aiSolutions = [
   { title: "AI Workflow Automation", icon: Workflow, detail: "Connect lead forms, sheets, CRM, emails, WhatsApp, and internal tasks into one reliable flow." },
   { title: "Lead Qualification Bots", icon: Bot, detail: "Capture intent, segment inquiries, score prospects, and route high-value leads faster." },
   { title: "WhatsApp Automation", icon: MessageCircle, detail: "Automated responses, quote flows, booking prompts, reminders, and sales follow-ups." },
-  { title: "CRM Automation", icon: BriefcaseBusiness, detail: "Move customer records, deal stages, reminders, and follow-ups without manual drag." },
   { title: "Content Automation", icon: Sparkles, detail: "Turn campaign ideas into reusable content pipelines for posts, ads, emails, and reports." },
   { title: "Reporting Dashboards", icon: Gauge, detail: "Live visibility into inquiries, ad spend, campaign results, operations, and growth metrics." },
   { title: "Agentic AI Systems", icon: BrainCircuit, detail: "Custom AI assistants that reason over business context and execute approved workflows." }
@@ -147,6 +152,15 @@ export const portfolio: PortfolioProject[] = [
     description: "Professional academy website for beauty training programs and admissions.",
     features: ["Course listings", "Admissions", "Program details"],
     gradient: "from-rose-300 via-fuchsia-700 to-slate-950"
+  },
+  {
+    title: "Mr. Fish Kitchen",
+    type: "Mobile App",
+    category: "Mobile App",
+    status: "Coming Soon",
+    description: "A seamless food ordering experience for a local kitchen brand. Launching soon.",
+    features: ["Food ordering", "Mobile-first UX", "Kitchen workflow"],
+    gradient: "from-orange-300 via-rose-500 to-slate-950"
   }
 ];
 
@@ -218,18 +232,18 @@ export const contactServices = [
   "Billing Software Development",
   "AI Automation",
   "Agentic AI Products",
-  "Google Ads",
   "Meta Ads",
   "SEO",
-  "Social Media Management",
+  "Performance Strategy",
   "Poster Design",
   "Video Editing",
   "Video Shooting",
   "Content Writing"
 ];
 
-export const socialLinks = [
-  { label: "Instagram", href: "https://instagram.com/innovexa_digital", icon: Instagram },
-  { label: "WhatsApp", href: "https://wa.me/919566061075", icon: MessageCircle },
-  { label: "Email", href: "mailto:innovexa.digitalservices@gmail.com", icon: FileText }
+export const socialLinks: SocialLink[] = [
+  { label: "WhatsApp", href: "https://wa.me/919566061075", icon: FaWhatsapp },
+  { label: "Instagram", href: "https://instagram.com/innovexa_digital", icon: FaInstagram },
+  { label: "LinkedIn", href: "https://linkedin.com/company/innovexa-digital", icon: FaLinkedinIn },
+  { label: "GitHub", href: "https://github.com/innovexa-digital", icon: FaGithub }
 ];

@@ -135,7 +135,13 @@ body::after {
 .section-shell {
   position: relative;
   margin-inline: auto;
-  width: min(1220px, calc(100% - 32px));
+  width: min(1200px, calc(100% - 3rem));
+}
+
+@media (min-width: 1024px) {
+  .section-shell {
+    width: min(1200px, calc(100% - 6rem));
+  }
 }
 
 .section-band {

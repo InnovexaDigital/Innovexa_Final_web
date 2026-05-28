@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/common/section-heading";
 
 export function FAQ() {
   return (
-    <section className="relative py-28">
+    <section id="faq" className="relative py-28">
       <div className="section-shell">
         <SectionHeading
           eyebrow="FAQ"
