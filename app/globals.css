@@ -49,21 +49,23 @@ body::before {
   content: "";
   pointer-events: none;
   position: fixed;
-  inset: -20%;
+  inset: -25%;
   z-index: -2;
   background:
-    radial-gradient(circle at 18% 18%, rgba(176, 23, 255, 0.14), transparent 22%),
-    radial-gradient(circle at 78% 12%, rgba(34, 216, 255, 0.12), transparent 20%),
-    radial-gradient(circle at 54% 72%, rgba(91, 77, 255, 0.1), transparent 24%);
-  animation: meshDrift 20s ease-in-out infinite alternate;
-  filter: blur(8px);
+    radial-gradient(circle at 18% 18%, rgba(176, 23, 255, 0.16), transparent 24%),
+    radial-gradient(circle at 78% 12%, rgba(34, 216, 255, 0.14), transparent 22%),
+    radial-gradient(circle at 54% 72%, rgba(91, 77, 255, 0.12), transparent 26%),
+    conic-gradient(from 120deg at 70% 30%, rgba(34, 216, 255, 0.08), rgba(157, 92, 255, 0.07), rgba(31, 122, 255, 0.06), rgba(34, 216, 255, 0.08));
+  animation: meshDrift 22s ease-in-out infinite alternate, auroraHue 28s linear infinite;
+  filter: blur(10px);
+  will-change: transform, filter;
 }
 
 body::after {
   content: "";
   pointer-events: none;
   position: fixed;
-  inset: 0;
+  inset: -10%;
   z-index: -1;
   background-image:
     radial-gradient(circle, rgba(255, 255, 255, 0.22) 0 1px, transparent 1.6px),
@@ -71,6 +73,8 @@ body::after {
   background-position: 0 0, 32px 54px;
   background-size: 140px 140px, 220px 220px;
   opacity: 0.13;
+  animation: particleDrift 36s linear infinite;
+  will-change: transform;
 }
 
 ::selection {
@@ -254,6 +258,65 @@ body::after {
   }
   100% {
     transform: translate3d(2%, 1.5%, 0) scale(1.05);
+  }
+}
+
+@keyframes auroraHue {
+  0% {
+    filter: blur(10px) hue-rotate(0deg);
+  }
+  100% {
+    filter: blur(10px) hue-rotate(360deg);
+  }
+}
+
+@keyframes particleDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-32px, -54px, 0);
+  }
+}
+
+/* Hero visual: smooth floating motion + orbiting particles */
+.hero-float {
+  animation: heroFloat 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+.hero-orbit {
+  border-radius: 9999px;
+  animation: orbitSpin 20s linear infinite;
+  will-change: transform;
+}
+
+.hero-orbit-dot {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  height: 0.5rem;
+  width: 0.5rem;
+  margin-left: -0.25rem;
+  border-radius: 9999px;
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 

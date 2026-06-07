@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useInView } from "framer-motion";
 import type { RefObject } from "react";
 
-export function useCountUp(ref: RefObject<HTMLElement>, end: number, duration = 1600) {
+export function useCountUp(ref: RefObject<HTMLElement | null>, end: number, duration = 1600) {
   const [value, setValue] = useState(0);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 

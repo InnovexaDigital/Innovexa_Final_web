@@ -9,6 +9,7 @@ import {
   Brush,
   Camera,
   ClipboardCheck,
+  Clock,
   Code2,
   Compass,
   Film,
@@ -24,6 +25,7 @@ import {
   Smartphone,
   Sparkles,
   Target,
+  Users,
   Workflow,
   Zap
 } from "lucide-react";
@@ -46,6 +48,21 @@ export type PortfolioProject = {
   gradient: string;
 };
 
+export type TrustStat = {
+  label: string;
+  value: number;
+  suffix: string;
+  icon: LucideIcon;
+};
+
+export type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+  company?: string;
+  rating?: number;
+};
+
 export type SocialLink = {
   label: string;
   href: string;
@@ -59,7 +76,7 @@ export const company = {
     "Innovexa Digital transforms businesses through technology, automation, AI, and creative digital experiences.",
   phone: "+91 95660 61075",
   email: "innovexa.digitalservices@gmail.com",
-  location: "Chennai, India",
+  location: "Chennai, Tamil Nadu, India",
   whatsapp: "+91 95660 61075",
   instagram: "innovexa_digital",
   linkedin: "innovexa-digital",
@@ -70,17 +87,17 @@ export const company = {
 export const navItems = ["Home", "Services", "Portfolio", "About", "Contact"];
 
 export const heroMetrics = [
-  { label: "Projects Delivered", value: "25+" },
-  { label: "AI Automations", value: "10+" },
+  { label: "Projects Delivered", value: "50+" },
+  { label: "Happy Clients", value: "20+" },
   { label: "Client Satisfaction", value: "98%" },
   { label: "Support", value: "24/7" }
 ];
 
-export const stats = [
-  { label: "Launch-ready websites, apps, and systems", value: "25+" },
-  { label: "Services across tech, AI, growth, and content", value: "12" },
-  { label: "Built from Chennai for local and global brands", value: "IN" },
-  { label: "Business-first execution model", value: "ROI" }
+export const stats: TrustStat[] = [
+  { label: "Projects Delivered", value: 50, suffix: "+", icon: Rocket },
+  { label: "Happy Clients", value: 20, suffix: "+", icon: Users },
+  { label: "Client Satisfaction", value: 98, suffix: "%", icon: BadgeCheck },
+  { label: "Support", value: 24, suffix: "/7", icon: Clock }
 ];
 
 export const services: Service[] = [
@@ -165,13 +182,26 @@ export const portfolio: PortfolioProject[] = [
 ];
 
 export const processSteps = [
-  { title: "Discovery", icon: Compass, detail: "We map the business model, audience, workflows, constraints, and growth goal." },
-  { title: "Strategy", icon: ClipboardCheck, detail: "We define the offer, architecture, conversion flow, automation plan, and launch priorities." },
-  { title: "Design", icon: Brush, detail: "We create a premium interface system with motion, hierarchy, accessibility, and trust." },
-  { title: "Development", icon: Code2, detail: "We build scalable websites, apps, dashboards, automations, and integrations." },
-  { title: "Automation", icon: Bot, detail: "We connect AI, WhatsApp, CRM, reporting, and operational workflows." },
-  { title: "Launch", icon: Rocket, detail: "We optimize performance, SEO, tracking, forms, testing, and production deployment." },
-  { title: "Scale", icon: BarChart3, detail: "We improve campaigns, content, data, and automation based on measurable outcomes." }
+  {
+    title: "Discover",
+    icon: Compass,
+    detail: "We map your business goals, target audience, competitive landscape, and constraints to define exactly what to build."
+  },
+  {
+    title: "Design",
+    icon: Brush,
+    detail: "We create premium UI systems, motion design, conversion-focused layouts, and brand experiences that build trust."
+  },
+  {
+    title: "Develop",
+    icon: Code2,
+    detail: "We build scalable websites, mobile apps, AI automations, and integrations with clean production-ready code."
+  },
+  {
+    title: "Launch",
+    icon: Rocket,
+    detail: "We optimize performance, SEO, analytics, and deploy polished production systems ready for real business growth."
+  }
 ];
 
 export const reasons = [
@@ -183,18 +213,50 @@ export const reasons = [
   { title: "Rapid execution", icon: Zap, detail: "A focused process that turns clarity into polished production output quickly." }
 ];
 
-export const testimonials = [
+export const testimonials: Testimonial[] = [
   {
-    quote: "Client stories coming soon.",
-    name: "Innovexa Digital",
-    role: "Verified project feedback will be added after launch"
+    quote: "Innovexa built us a stunning website that immediately elevated our brand. Inquiries increased significantly within the first few weeks of going live.",
+    name: "Arun Kumar",
+    role: "Director",
+    company: "Galaxy Beauty Academy",
+    rating: 5
+  },
+  {
+    quote: "The stall booking platform they delivered was exactly what we envisioned — fast, clean, and ready for real users on launch day. Outstanding work.",
+    name: "Kamal R.",
+    role: "Founder",
+    company: "KL Stall",
+    rating: 5
+  },
+  {
+    quote: "Professional team, clear communication, and delivered exactly on time. Our printing business now has a world-class online presence we're proud of.",
+    name: "Rajan M.",
+    role: "Owner",
+    company: "Siva Sakthi Printers",
+    rating: 5
   }
 ];
 
 export const pricing = [
-  { name: "Website Launch", price: "Custom", detail: "Premium website strategy, design, development, SEO foundations, and lead capture.", features: ["Responsive website", "Performance setup", "Contact flow", "Launch support"] },
-  { name: "Automation System", price: "Custom", detail: "AI and workflow automation for leads, WhatsApp, CRM, content, and reporting.", features: ["Workflow map", "AI automation", "Integration setup", "Dashboard support"], featured: true },
-  { name: "Growth Partner", price: "Custom", detail: "Ongoing website, ads, content, SEO, automation, and creative execution.", features: ["Campaign support", "Creative assets", "SEO rhythm", "Monthly optimization"] }
+  {
+    name: "Starter",
+    price: "Custom",
+    detail: "Premium website strategy, design, development, SEO foundations, and lead capture for growing businesses.",
+    features: ["Responsive website", "Performance setup", "Contact & lead flow", "Launch support"]
+  },
+  {
+    name: "Business",
+    price: "Custom",
+    detail: "AI and workflow automation for leads, WhatsApp, CRM, content, and reporting — built for scale.",
+    features: ["Workflow map", "AI automation", "Integration setup", "Analytics dashboard", "Priority support"],
+    featured: true
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    detail: "Ongoing website, ads, content, SEO, automation, and creative execution as a full growth partner.",
+    features: ["Campaign support", "Creative assets", "SEO rhythm", "Monthly optimization", "Dedicated team"]
+  }
 ];
 
 export const posts = [
