@@ -41,6 +41,8 @@ export type PortfolioProject = {
   title: string;
   type: string;
   category: string;
+  logo?: string;
+  logoLabel: string;
   url?: string;
   status?: string;
   description: string;
@@ -129,6 +131,8 @@ export const portfolio: PortfolioProject[] = [
     title: "KL Stall App",
     type: "Business Management Platform",
     category: "Web App",
+    logo: "https://k-lstall-app.vercel.app/favicon.ico",
+    logoLabel: "KL",
     url: "https://k-lstall-app.vercel.app/",
     description: "Digital platform for stall booking and event business management.",
     features: ["Event booking", "Management dashboard", "Booking workflows"],
@@ -138,6 +142,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Siva Sakthi Printers",
     type: "Printing Business Website",
     category: "Website",
+    logoLabel: "SSP",
     url: "https://sivasakthiprinters.netlify.app/",
     description: "Professional website for printing services and customer engagement.",
     features: ["Service pages", "Quote flow", "Contact integration"],
@@ -147,6 +152,8 @@ export const portfolio: PortfolioProject[] = [
     title: "Export Demo Site",
     type: "Export Business Website",
     category: "Export",
+    logo: "https://exportdemosite.netlify.app/Gemini_Generated_Image_f4mrmbf4mrmbf4mr-removebg-preview.png",
+    logoLabel: "EX",
     url: "https://exportdemosite.netlify.app/",
     description: "Corporate export-focused website built for product showcasing and inquiries.",
     features: ["Product showcase", "Inquiry forms", "International focus"],
@@ -156,6 +163,8 @@ export const portfolio: PortfolioProject[] = [
     title: "Danny Stationary Shop",
     type: "E-Commerce Storefront",
     category: "Commerce",
+    logo: "https://danny-stationary-shop.netlify.app/logo.jpg",
+    logoLabel: "DS",
     url: "https://danny-stationary-shop.netlify.app/",
     description: "Online shopping website for stationery products and retail sales.",
     features: ["Product catalog", "Cart flow", "Checkout"],
@@ -165,6 +174,8 @@ export const portfolio: PortfolioProject[] = [
     title: "Galaxy Beauty Academy",
     type: "Education / Academy Website",
     category: "Website",
+    logo: "https://www.galaxybeautyacademy.com/favicon.png",
+    logoLabel: "GBA",
     url: "https://www.galaxybeautyacademy.com/",
     description: "Professional academy website for beauty training programs and admissions.",
     features: ["Course listings", "Admissions", "Program details"],
@@ -174,6 +185,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Mr. Fish Kitchen",
     type: "Mobile App",
     category: "Mobile App",
+    logoLabel: "MF",
     status: "Coming Soon",
     description: "A seamless food ordering experience for a local kitchen brand. Launching soon.",
     features: ["Food ordering", "Mobile-first UX", "Kitchen workflow"],

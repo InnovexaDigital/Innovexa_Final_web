@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Fish, Smartphone } from "lucide-react";
+import { ArrowUpRight, Fish } from "lucide-react";
 import { useMemo, useState } from "react";
 import { portfolio, type PortfolioProject } from "@/lib/site-data";
 import { SectionHeading } from "@/components/common/section-heading";
@@ -63,15 +63,26 @@ export function Portfolio() {
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_30%,rgba(251,146,60,.35),transparent_42%),radial-gradient(circle_at_70%_70%,rgba(255,99,71,.24),transparent_44%)]" />
                   )}
 
-                  {item.title === "Mr. Fish Kitchen" && (
-                    <div className="absolute right-6 top-16 grid place-items-center">
-                      <div className="relative grid h-36 w-20 place-items-center rounded-[1.25rem] border border-white/35 bg-black/30 shadow-[0_0_45px_rgba(251,146,60,.2)] backdrop-blur">
-                        <div className="absolute top-2 h-1 w-7 rounded-full bg-white/40" />
-                        <Fish className="h-7 w-7 text-orange-200" />
-                        <Smartphone className="absolute -bottom-4 h-6 w-6 text-orange-100/85" />
-                      </div>
+                  <div className="absolute left-1/2 top-[42%] z-10 -translate-x-1/2 -translate-y-1/2">
+                    <div className="relative grid h-24 w-24 place-items-center overflow-hidden rounded-[1.75rem] border border-white/25 bg-black/25 p-4 shadow-[0_18px_55px_rgba(0,0,0,.28),inset_0_1px_0_rgba(255,255,255,.18)] backdrop-blur-xl transition duration-500 group-hover:-translate-y-1 group-hover:scale-105">
+                      <span className="font-display text-xl font-bold tracking-tight text-white/85">
+                        {item.logoLabel}
+                      </span>
+                      {item.title === "Mr. Fish Kitchen" ? (
+                        <Fish className="absolute h-10 w-10 text-orange-100" />
+                      ) : item.logo ? (
+                        <img
+                          src={item.logo}
+                          alt={`${item.title} logo`}
+                          className="absolute inset-4 h-[calc(100%-2rem)] w-[calc(100%-2rem)] object-contain"
+                          loading="lazy"
+                          onError={(event) => {
+                            event.currentTarget.style.display = "none";
+                          }}
+                        />
+                      ) : null}
                     </div>
-                  )}
+                  </div>
 
                   <div className="absolute bottom-5 left-5 right-5">
                     <span className="rounded-full bg-black/30 px-3 py-1 text-xs text-white/80 backdrop-blur">{item.category}</span>
