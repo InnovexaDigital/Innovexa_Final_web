@@ -41,6 +41,7 @@ export type PortfolioProject = {
   title: string;
   type: string;
   category: string;
+  image?: string;
   logo?: string;
   logoLabel: string;
   url?: string;
@@ -131,7 +132,7 @@ export const portfolio: PortfolioProject[] = [
     title: "KL Stall App",
     type: "Business Management Platform",
     category: "Web App",
-    logo: "https://k-lstall-app.vercel.app/favicon.ico",
+    image: "/portfolio/kl-stall.png",
     logoLabel: "KL",
     url: "https://k-lstall-app.vercel.app/",
     description: "Digital platform for stall booking and event business management.",
@@ -142,6 +143,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Siva Sakthi Printers",
     type: "Printing Business Website",
     category: "Website",
+    image: "/portfolio/siva-sakthi-printers.png",
     logoLabel: "SSP",
     url: "https://sivasakthiprinters.netlify.app/",
     description: "Professional website for printing services and customer engagement.",
@@ -152,7 +154,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Export Demo Site",
     type: "Export Business Website",
     category: "Export",
-    logo: "https://exportdemosite.netlify.app/Gemini_Generated_Image_f4mrmbf4mrmbf4mr-removebg-preview.png",
+    image: "/portfolio/export-demo.png",
     logoLabel: "EX",
     url: "https://exportdemosite.netlify.app/",
     description: "Corporate export-focused website built for product showcasing and inquiries.",
@@ -163,7 +165,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Danny Stationary Shop",
     type: "E-Commerce Storefront",
     category: "Commerce",
-    logo: "https://danny-stationary-shop.netlify.app/logo.jpg",
+    image: "/portfolio/danny-stationary.png",
     logoLabel: "DS",
     url: "https://danny-stationary-shop.netlify.app/",
     description: "Online shopping website for stationery products and retail sales.",
@@ -174,7 +176,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Galaxy Beauty Academy",
     type: "Education / Academy Website",
     category: "Website",
-    logo: "https://www.galaxybeautyacademy.com/favicon.png",
+    image: "/portfolio/galaxy-beauty-academy.png",
     logoLabel: "GBA",
     url: "https://www.galaxybeautyacademy.com/",
     description: "Professional academy website for beauty training programs and admissions.",

@@ -55,8 +55,8 @@ export function Navbar() {
           <div className="pointer-events-none absolute -left-16 top-1/2 h-28 w-28 -translate-y-1/2 rounded-full bg-cyan-glow/10 blur-3xl" />
           <div className="pointer-events-none absolute -right-16 top-1/2 h-28 w-28 -translate-y-1/2 rounded-full bg-violet-500/10 blur-3xl" />
 
-          <a href="#home" className="group flex h-full items-center transition" aria-label="INNOVEXA DIGITAL home">
-            <Logo src="/logo/innovexa-logo.png" className="relative h-11 w-auto transition-transform duration-300 group-hover:scale-[1.03] sm:h-12" />
+          <a href="#home" className="group flex h-full items-center self-stretch transition" aria-label="INNOVEXA DIGITAL home">
+            <Logo src="/logo/innovexa-logo.png" className="relative block h-10 w-auto transition-transform duration-300 group-hover:scale-[1.03] sm:h-11" />
           </a>
 
           <div className="hidden items-center justify-center lg:flex">
@@ -86,7 +86,7 @@ export function Navbar() {
             <Button asChild variant="glass" className="border-white/[0.12] bg-white/[0.045]">
               <a href="#contact">Book Consultation</a>
             </Button>
-            <Button asChild variant="premium" className="shadow-[0_8px_30px_rgba(34,216,255,.3)]">
+            <Button asChild variant="premium">
               <a href="#contact">Start Project</a>
             </Button>
           </div>
@@ -129,7 +129,7 @@ export function Navbar() {
                   <Button asChild variant="glass">
                     <a href="#contact" onClick={() => setMenuOpen(false)}>Book Consultation</a>
                   </Button>
-                  <Button asChild variant="premium" className="shadow-[0_0_30px_rgba(34,216,255,.3)]">
+                  <Button asChild variant="premium">
                     <a href="#contact" onClick={() => setMenuOpen(false)}>Start Project</a>
                   </Button>
                 </div>

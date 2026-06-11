@@ -2,46 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Play, Sparkles, Activity, Shield, Rocket, Users } from "lucide-react";
-import type { ComponentType } from "react";
-import { useRef } from "react";
+import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { company } from "@/lib/site-data";
-import { useCountUp } from "@/hooks/use-count-up";
-
-function MetricCard({
-  end,
-  suffix,
-  label,
-  Icon,
-  delay
-}: {
-  end: number;
-  suffix: string;
-  label: string;
-  Icon: ComponentType<{ className?: string }>;
-  delay: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const value = useCountUp(ref, end, 1300);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay }}
-      className="group relative min-h-[112px] overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(145deg,rgba(11,16,30,.78),rgba(7,12,22,.55))] p-4 shadow-[0_18px_50px_rgba(0,0,0,.24)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-glow/30 hover:shadow-[0_20px_60px_rgba(0,217,255,.12)]"
-    >
-      <div className="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-cyan-glow/12 blur-2xl transition group-hover:bg-cyan-glow/22" />
-      <div className="relative mb-2 inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06] text-cyan-glow transition group-hover:scale-110">
-        <Icon className="h-4 w-4" />
-      </div>
-      <div className="relative font-display text-2xl font-semibold tracking-tight text-white">{value}{suffix}</div>
-      <div className="relative mt-1 text-xs leading-5 text-white/54">{label}</div>
-    </motion.div>
-  );
-}
 
 export function Hero() {
   return (
@@ -92,7 +55,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:flex-wrap sm:items-center"
           >
-            <Button asChild size="lg" variant="premium" className="group shadow-[0_0_48px_rgba(59,130,246,.4)]">
+            <Button asChild size="lg" variant="premium" className="group">
               <a href="#contact">
                 Get Free Consultation
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -105,13 +68,6 @@ export function Hero() {
               </a>
             </Button>
           </motion.div>
-
-          <div className="mt-11 grid w-full grid-cols-2 gap-3 md:grid-cols-4">
-            <MetricCard end={50} suffix="+" label="Projects Delivered" Icon={Rocket} delay={0.75} />
-            <MetricCard end={20} suffix="+" label="Happy Clients" Icon={Users} delay={0.83} />
-            <MetricCard end={98} suffix="%" label="Client Satisfaction" Icon={Shield} delay={0.91} />
-            <MetricCard end={24} suffix="/7" label="Support" Icon={Activity} delay={0.99} />
-          </div>
         </div>
 
         <motion.div

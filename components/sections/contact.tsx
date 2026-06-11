@@ -38,7 +38,7 @@ export function Contact() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!serviceNeeded || !budgetRange || !timeline) {
+    if (!serviceNeeded || !budgetRange.trim() || !timeline) {
       return;
     }
 
@@ -93,7 +93,7 @@ export function Contact() {
             <div className="mt-7 grid grid-cols-2 gap-3 text-left">
               {[
                 { value: "24h", label: "First response time" },
-                { value: "50+", label: "Digital launches" },
+                { value: "10+", label: "Projects Delivered" },
                 { value: "98%", label: "Client satisfaction" },
                 { value: "End-to-end", label: "Strategy to deployment" }
               ].map((item) => (
@@ -119,18 +119,18 @@ export function Contact() {
                 <Phone className="h-4 w-4 text-cyan-glow" />
                 {company.phone}
               </a>
+            </div>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a
                 href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.045] px-4 py-3 text-sm text-white/72 transition hover:border-cyan-glow/35 hover:text-white"
+                className="grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/[0.04] text-white/74 transition hover:scale-105 hover:border-emerald-400/50 hover:text-emerald-300 hover:shadow-[0_0_22px_rgba(52,211,153,.3)]"
+                aria-label="Chat on WhatsApp"
               >
-                {WhatsAppIcon && <WhatsAppIcon className="h-4 w-4 text-cyan-glow" />}
-                WhatsApp {company.whatsapp}
+                {WhatsAppIcon && <WhatsAppIcon className="h-5 w-5" />}
               </a>
-            </div>
-
-            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a
                 href={instagramUrl}
                 target="_blank"
@@ -186,7 +186,7 @@ export function Contact() {
             </div>
           </div>
 
-          <div className="relative mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="relative mt-7 grid gap-5 sm:grid-cols-2">
             <div className="relative">
               <input id="full_name" name="full_name" placeholder="Full Name" className={inputClassName} required />
               <label htmlFor="full_name" className={labelClassName}>Full Name</label>
@@ -217,20 +217,18 @@ export function Contact() {
               options={contactServices.map((service) => ({ value: service, label: service }))}
             />
 
-            <PremiumSelectField
-              id="budget"
-              name="budget"
-              label="Budget"
-              value={budgetRange}
-              onValueChange={setBudgetRange}
-              placeholder="Select budget range"
-              options={[
-                { value: "Under ₹25,000", label: "Under ₹25,000" },
-                { value: "₹25,000 - ₹75,000", label: "₹25,000 - ₹75,000" },
-                { value: "₹75,000 - ₹2,00,000", label: "₹75,000 - ₹2,00,000" },
-                { value: "₹2,00,000+", label: "₹2,00,000+" }
-              ]}
-            />
+            <div className="relative">
+              <input
+                id="budget"
+                name="budget"
+                placeholder="Budget"
+                className={inputClassName}
+                value={budgetRange}
+                onChange={(event) => setBudgetRange(event.target.value)}
+                required
+              />
+              <label htmlFor="budget" className={labelClassName}>Budget (e.g. ₹50,000)</label>
+            </div>
 
             <div className="sm:col-span-2">
               <PremiumSelectField
@@ -267,16 +265,16 @@ export function Contact() {
             <input type="hidden" name="whatsapp" value={`https://wa.me/${whatsappNumber}`} />
           </div>
 
-          {!serviceNeeded || !budgetRange || !timeline ? (
-            <p className="mt-4 text-xs text-amber-200/75">Choose service, budget, and timeline to submit.</p>
+          {!serviceNeeded || !budgetRange.trim() || !timeline ? (
+            <p className="mt-4 text-xs text-amber-200/75">Choose a service and timeline, and enter your budget to submit.</p>
           ) : null}
 
           <motion.button
             type="submit"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.99 }}
-            disabled={!serviceNeeded || !budgetRange || !timeline || status === "sending"}
-            className="relative mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-[linear-gradient(110deg,#0ea5e9_0%,#22d3ee_40%,#6366f1_85%)] text-sm font-bold uppercase tracking-[0.15em] text-white shadow-[0_14px_40px_rgba(34,216,255,.32)] transition hover:shadow-[0_18px_50px_rgba(99,102,241,.42)]"
+            disabled={!serviceNeeded || !budgetRange.trim() || !timeline || status === "sending"}
+            className="relative mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-[linear-gradient(110deg,#1D9BF0,#3B82F6)] text-sm font-bold uppercase tracking-[0.15em] text-white shadow-[0_10px_28px_rgba(59,130,246,.2)] transition hover:bg-[linear-gradient(110deg,#38BDF8,#2563EB)] hover:shadow-[0_12px_34px_rgba(37,99,235,.26)] disabled:opacity-60"
           >
             {status === "sending" ? "Sending..." : status === "sent" ? "Request Sent" : "Start Your Project"}
             <Send className="h-4 w-4" />

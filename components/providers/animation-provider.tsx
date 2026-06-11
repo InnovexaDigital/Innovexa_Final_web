@@ -35,11 +35,13 @@ export function AnimationProvider() {
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerout", onPointerOut, { passive: true });
 
+    document.documentElement.classList.add("gsap-ready");
+
     const ctx = gsap.context(() => {
       ScrollTrigger.batch("[data-gsap-reveal]", {
         interval: 0.12,
         batchMax: 6,
-        start: "top 86%",
+        start: "top 92%",
         onEnter: (batch) => {
           gsap.to(batch, {
             autoAlpha: 1,
@@ -51,8 +53,6 @@ export function AnimationProvider() {
           });
         }
       });
-
-      gsap.set("[data-gsap-reveal]", { autoAlpha: 0, y: 28 });
 
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
         gsap.fromTo(
@@ -76,9 +76,10 @@ export function AnimationProvider() {
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerout", onPointerOut);
+      document.documentElement.classList.remove("gsap-ready");
       ctx.revert();
     };
   }, []);
 
-  return <div className="cursor-glow hidden lg:block" />;
+  return <div className="cursor-glow" />;
 }

@@ -1,6 +1,5 @@
 import { company } from "@/lib/site-data";
 import { SectionHeading } from "@/components/common/section-heading";
-import { Button } from "@/components/ui/button";
 
 export function About() {
   return (
@@ -24,11 +23,6 @@ export function About() {
               <p className="mt-4 text-sm leading-7 text-white/55">{copy}</p>
             </div>
           ))}
-          <div className="sm:col-span-2">
-            <Button asChild variant="premium" size="lg">
-              <a href="#contact">Build With Innovexa Digital</a>
-            </Button>
-          </div>
         </div>
       </div>
     </section>

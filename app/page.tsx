@@ -9,7 +9,6 @@ import { Solutions } from "@/components/sections/solutions";
 import { Portfolio } from "@/components/sections/portfolio";
 import { Process } from "@/components/sections/process";
 import { WhyChoose } from "@/components/sections/why-choose";
-import { Testimonials } from "@/components/sections/testimonials";
 import { About } from "@/components/sections/about";
 import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
@@ -28,7 +27,6 @@ export default function Home() {
         <Process />
         <About />
         <WhyChoose />
-        <Testimonials />
         <FAQ />
         <Contact />
       </main>

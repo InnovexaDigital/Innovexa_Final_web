@@ -9,11 +9,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-white text-slate-950 shadow-[0_0_40px_rgba(18,231,255,.2)] hover:bg-cyan-100 hover:shadow-[0_0_52px_rgba(18,231,255,.32)]",
+          "bg-[linear-gradient(110deg,#1D9BF0,#3B82F6)] text-white shadow-[0_0_20px_rgba(59,130,246,.18)] hover:bg-[linear-gradient(110deg,#38BDF8,#2563EB)] hover:shadow-[0_0_26px_rgba(59,130,246,.24)]",
         premium:
-          "glow-ring bg-[linear-gradient(110deg,#00A3FF_0%,#00D9FF_38%,#7A5CFF_72%,#B315FF_100%)] bg-[length:200%_100%] bg-left text-white shadow-[0_0_42px_rgba(0,217,255,.35)] hover:bg-right hover:shadow-[0_0_64px_rgba(179,21,255,.42)]",
+          "bg-[linear-gradient(110deg,#1D9BF0_0%,#3B82F6_100%)] text-white shadow-[0_0_21px_rgba(59,130,246,.18)] hover:bg-[linear-gradient(110deg,#38BDF8_0%,#2563EB_100%)] hover:shadow-[0_0_32px_rgba(59,130,246,.22)]",
         glass:
-          "glass text-white hover:border-cyan-glow/40 hover:bg-cyan-glow/10 hover:shadow-[0_0_36px_rgba(18,231,255,.18)]",
+          "glass text-white hover:border-cyan-glow/40 hover:bg-cyan-glow/10 hover:shadow-[0_0_18px_rgba(18,231,255,.09)]",
         ghost:
           "text-white/78 hover:bg-white/10 hover:text-white"
       },

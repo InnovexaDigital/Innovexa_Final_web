@@ -1,13 +1,13 @@
 import { company, navItems, services, socialLinks } from "@/lib/site-data";
-import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/common/logo";
 
 const hrefFor = (item: string) => `#${item.toLowerCase()}`;
 
 export function Footer() {
   const phoneHref = `tel:${company.phone.replaceAll(" ", "")}`;
-  const whatsappHref = `https://wa.me/${company.whatsapp.replaceAll(" ", "").replace("+", "")}`;
-  const socialFooterLinks = socialLinks.filter(({ label }) => ["Instagram", "LinkedIn", "GitHub"].includes(label));
+  const socialFooterLinks = socialLinks.filter(({ label }) =>
+    ["WhatsApp", "Instagram", "LinkedIn", "GitHub"].includes(label)
+  );
 
   return (
     <footer className="section-band border-t border-white/10 py-12 md:py-16">
@@ -15,12 +15,6 @@ export function Footer() {
         <div className="glass-dark grid gap-8 rounded-[1.5rem] p-6 sm:p-8 lg:grid-cols-[1.3fr_.9fr_1fr_1fr_1fr] lg:p-10">
           <div>
             <Logo className="w-[210px] md:w-[240px]" />
-            <p className="mt-4 max-w-md leading-7 text-white/52">
-              {company.tagline} Premium websites, mobile apps, AI automation, digital marketing, and creative content solutions.
-            </p>
-            <Button asChild variant="premium" className="mt-6">
-              <a href="#contact">Start Project</a>
-            </Button>
           </div>
 
           <div>
@@ -50,7 +44,6 @@ export function Footer() {
               <a href={phoneHref} className="hover:text-cyan-glow">{company.phone}</a>
               <a href={`mailto:${company.email}`} className="break-words hover:text-cyan-glow">{company.email}</a>
               <span>{company.location}</span>
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-glow">WhatsApp Chat</a>
             </div>
           </div>
 
@@ -65,11 +58,13 @@ export function Footer() {
                   rel="noopener noreferrer"
                   aria-label={label}
                   className={`grid h-11 w-11 place-items-center rounded-full border border-white/12 bg-white/[0.05] text-white/70 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 ${
-                    label === "Instagram"
-                      ? "hover:border-fuchsia-300/50 hover:text-fuchsia-200 hover:shadow-[0_0_22px_rgba(236,72,153,.35)]"
-                      : label === "LinkedIn"
-                        ? "hover:border-sky-300/50 hover:text-sky-200 hover:shadow-[0_0_22px_rgba(56,189,248,.34)]"
-                        : "hover:border-white/45 hover:text-white hover:shadow-[0_0_22px_rgba(226,232,240,.32)]"
+                    label === "WhatsApp"
+                      ? "hover:border-emerald-300/50 hover:text-emerald-200 hover:shadow-[0_0_22px_rgba(52,211,153,.3)]"
+                      : label === "Instagram"
+                        ? "hover:border-fuchsia-300/50 hover:text-fuchsia-200 hover:shadow-[0_0_22px_rgba(236,72,153,.35)]"
+                        : label === "LinkedIn"
+                          ? "hover:border-sky-300/50 hover:text-sky-200 hover:shadow-[0_0_22px_rgba(56,189,248,.34)]"
+                          : "hover:border-white/45 hover:text-white hover:shadow-[0_0_22px_rgba(226,232,240,.32)]"
                   }`}
                 >
                   <Icon className="h-5 w-5" />
@@ -83,9 +78,9 @@ export function Footer() {
           <span>(c) 2026 {company.name}. All rights reserved.</span>
           <div className="flex flex-wrap gap-4">
             <a href="https://innovexa.digital" target="_blank" rel="noopener noreferrer" className="hover:text-white/55">{company.website}</a>
-            <a href="#faq" className="hover:text-white/55">Privacy</a>
-            <a href="#faq" className="hover:text-white/55">Terms</a>
-            <a href="#services" className="hover:text-white/55">Security</a>
+            <a href="/privacy" className="hover:text-white/55">Privacy</a>
+            <a href="/terms" className="hover:text-white/55">Terms</a>
+            <a href="/security" className="hover:text-white/55">Security</a>
           </div>
         </div>
       </div>
