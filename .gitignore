@@ -7,7 +7,17 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
 dev-server.log
 next-dev.log
 next-dev.err
 .vercel
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# Local analysis / screenshot artifacts
+.playwright-analysis/
+screenshots/
+.pw-analysis.mjs
+shot.mjs

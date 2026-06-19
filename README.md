@@ -1,6 +1,6 @@
 # INNOVEXA Premium Site
 
-A premium Next.js website for INNOVEXA, an AI, design, automation, and digital growth studio. The site includes animated service sections, a 3D hero scene, pricing, portfolio highlights, testimonials, blog previews, and a contact intake form.
+A premium Next.js website for INNOVEXA, an AI, design, automation, and digital growth studio. The site includes animated service sections, an animated hero, pricing, portfolio highlights, testimonials, blog previews, and a contact intake form.
 
 ## Tech Stack
 
@@ -8,7 +8,6 @@ A premium Next.js website for INNOVEXA, an AI, design, automation, and digital g
 - React 19
 - TypeScript
 - Tailwind CSS
-- Three.js with React Three Fiber and Drei
 - GSAP and Framer Motion
 - Lenis smooth scrolling
 - EmailJS for contact form delivery
@@ -89,7 +88,6 @@ components/
   layout/            Navbar and footer
   providers/         Animation and smooth-scroll providers
   sections/          Homepage sections
-  three/             3D scene components
   ui/                Reusable UI primitives
 hooks/               Custom React hooks
 lib/                 Utilities, store, and site data
