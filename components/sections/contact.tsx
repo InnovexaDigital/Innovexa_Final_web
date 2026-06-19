@@ -229,18 +229,22 @@ export function Contact() {
               options={contactServices.map((service) => ({ value: service, label: service }))}
             />
 
-            <div className="relative">
-              <input
-                id="budget"
-                name="budget"
-                placeholder="Budget"
-                className={inputClassName}
-                value={budgetRange}
-                onChange={(event) => setBudgetRange(event.target.value)}
-                required
-              />
-              <label htmlFor="budget" className={labelClassName}>Budget (e.g. ₹50,000)</label>
-            </div>
+            <PremiumSelectField
+              id="budget"
+              name="budget"
+              label="Budget"
+              value={budgetRange}
+              onValueChange={setBudgetRange}
+              placeholder="Select budget"
+              options={[
+                { value: "Under ₹50,000", label: "Under ₹50,000" },
+                { value: "₹50,000 – ₹1,00,000", label: "₹50,000 – ₹1,00,000" },
+                { value: "₹1,00,000 – ₹3,00,000", label: "₹1,00,000 – ₹3,00,000" },
+                { value: "₹3,00,000 – ₹5,00,000", label: "₹3,00,000 – ₹5,00,000" },
+                { value: "₹5,00,000+", label: "₹5,00,000+" },
+                { value: "Not sure yet", label: "Not sure yet" }
+              ]}
+            />
 
             <div className="sm:col-span-2">
               <PremiumSelectField
