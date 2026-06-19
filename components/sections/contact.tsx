@@ -19,7 +19,7 @@ const labelClassName =
   "pointer-events-none absolute left-4 top-4 text-xs uppercase tracking-[0.16em] text-white/50 transition-all duration-200 peer-placeholder-shown:top-[1.1rem] peer-placeholder-shown:text-sm peer-placeholder-shown:tracking-[0.08em] peer-placeholder-shown:text-white/36 peer-focus:top-4 peer-focus:text-xs peer-focus:tracking-[0.16em] peer-focus:text-cyan-100";
 
 export function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [serviceNeeded, setServiceNeeded] = useState("");
   const [budgetRange, setBudgetRange] = useState("");
   const [timeline, setTimeline] = useState("");
@@ -42,21 +42,33 @@ export function Contact() {
       return;
     }
 
+    const form = event.currentTarget;
+
+    // Honeypot: bots fill hidden fields, humans never see them.
+    if ((form.elements.namedItem("company_website") as HTMLInputElement | null)?.value) {
+      return;
+    }
+
     setStatus("sending");
 
-    const form = event.currentTarget;
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-    if (serviceId && templateId && publicKey) {
-      await emailjs.sendForm(serviceId, templateId, form, { publicKey });
-    }
+    try {
+      if (serviceId && templateId && publicKey) {
+        await emailjs.sendForm(serviceId, templateId, form, { publicKey });
+      }
 
-    window.setTimeout(() => {
       setStatus("sent");
       form.reset();
-    }, 700);
+      setServiceNeeded("");
+      setBudgetRange("");
+      setTimeline("");
+    } catch (error) {
+      console.error("Contact form submission failed", error);
+      setStatus("error");
+    }
   }
 
   return (
@@ -217,18 +229,22 @@ export function Contact() {
               options={contactServices.map((service) => ({ value: service, label: service }))}
             />
 
-            <div className="relative">
-              <input
-                id="budget"
-                name="budget"
-                placeholder="Budget"
-                className={inputClassName}
-                value={budgetRange}
-                onChange={(event) => setBudgetRange(event.target.value)}
-                required
-              />
-              <label htmlFor="budget" className={labelClassName}>Budget (e.g. ₹50,000)</label>
-            </div>
+            <PremiumSelectField
+              id="budget"
+              name="budget"
+              label="Budget"
+              value={budgetRange}
+              onValueChange={setBudgetRange}
+              placeholder="Select budget"
+              options={[
+                { value: "Under ₹50,000", label: "Under ₹50,000" },
+                { value: "₹50,000 – ₹1,00,000", label: "₹50,000 – ₹1,00,000" },
+                { value: "₹1,00,000 – ₹3,00,000", label: "₹1,00,000 – ₹3,00,000" },
+                { value: "₹3,00,000 – ₹5,00,000", label: "₹3,00,000 – ₹5,00,000" },
+                { value: "₹5,00,000+", label: "₹5,00,000+" },
+                { value: "Not sure yet", label: "Not sure yet" }
+              ]}
+            />
 
             <div className="sm:col-span-2">
               <PremiumSelectField
@@ -259,6 +275,16 @@ export function Contact() {
               />
             </div>
 
+            {/* Honeypot — hidden from humans, catches spam bots. */}
+            <input
+              type="text"
+              name="company_website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
+
             <input type="hidden" name="instagram" value={instagramUrl} />
             <input type="hidden" name="linkedin" value={linkedinUrl} />
             <input type="hidden" name="github" value={githubUrl} />
@@ -276,9 +302,26 @@ export function Contact() {
             disabled={!serviceNeeded || !budgetRange.trim() || !timeline || status === "sending"}
             className="relative mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-[linear-gradient(110deg,#1D9BF0,#3B82F6)] text-sm font-bold uppercase tracking-[0.15em] text-white shadow-[0_10px_28px_rgba(59,130,246,.2)] transition hover:bg-[linear-gradient(110deg,#38BDF8,#2563EB)] hover:shadow-[0_12px_34px_rgba(37,99,235,.26)] disabled:opacity-60"
           >
-            {status === "sending" ? "Sending..." : status === "sent" ? "Request Sent" : "Start Your Project"}
+            {status === "sending"
+              ? "Sending..."
+              : status === "sent"
+                ? "Request Sent"
+                : status === "error"
+                  ? "Try Again"
+                  : "Start Your Project"}
             <Send className="h-4 w-4" />
           </motion.button>
+
+          {status === "sent" ? (
+            <p className="mt-3 text-sm text-emerald-300/90" role="status">
+              Thanks — your request has been received. We&apos;ll reply within 24 hours.
+            </p>
+          ) : null}
+          {status === "error" ? (
+            <p className="mt-3 text-sm text-rose-300/90" role="alert">
+              Something went wrong sending your request. Please try again or email us at {company.email}.
+            </p>
+          ) : null}
 
           <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-white/48">
             <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-cyan-glow" /> NDA-friendly process</span>
