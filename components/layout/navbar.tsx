@@ -38,6 +38,15 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [anchors]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen, setMenuOpen]);
+
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto w-full max-w-[78rem]">
@@ -82,7 +91,7 @@ export function Navbar() {
             </div>
           </div>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-2 justify-self-end md:flex lg:justify-self-auto">
             <Button asChild variant="glass" className="border-white/[0.12] bg-white/[0.045]">
               <a href="#contact">Book Consultation</a>
             </Button>
@@ -92,9 +101,10 @@ export function Navbar() {
           </div>
 
           <button
-            className="grid h-9 w-9 place-items-center justify-self-end rounded-full border border-white/10 bg-white/[0.08] text-white md:hidden"
+            className="grid h-11 w-11 place-items-center justify-self-end rounded-full border border-white/10 bg-white/[0.08] text-white transition hover:bg-white/[0.14] lg:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -104,11 +114,24 @@ export function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            key="menu-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 -z-10 bg-black/50 backdrop-blur-sm lg:hidden"
+            onClick={() => setMenuOpen(false)}
+            aria-hidden
+          />
+        )}
+        {menuOpen && (
+          <motion.div
+            key="menu-panel"
             initial={{ opacity: 0, y: -18 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -14 }}
             transition={{ duration: 0.26, ease: "easeOut" }}
-            className="mx-auto mt-2 w-full max-w-[78rem] md:hidden"
+            className="mx-auto mt-2 w-full max-w-[78rem] lg:hidden"
           >
             <div className="overflow-hidden rounded-[1.2rem] border border-white/10 bg-[#070d1b]/90 p-4 shadow-[0_20px_56px_rgba(0,0,0,.36)] backdrop-blur-xl">
               <div className="grid gap-1">

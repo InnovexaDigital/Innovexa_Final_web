@@ -11,3 +11,15 @@ dev-server.log
 next-dev.log
 next-dev.err
 .vercel
+
+# Local audit / tooling artifacts
+.playwright-audit
+.playwright-analysis
+.pw-audit.mjs
+.pw-analysis.mjs
+.lh-run.mjs
+.lh-diag.mjs
+prod-server.log
+next-dev*.log
+dev-run.log
+*.tsbuildinfo

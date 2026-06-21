@@ -1,74 +1,109 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
+import { siteUrl } from "@/lib/site-config";
+import { globalGraph } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/json-ld";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  weight: ["400", "500", "600", "700"]
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
+  weight: ["500", "600", "700"]
+});
+
+const title = "INNOVEXA DIGITAL — Web, Mobile App & AI Automation Agency in Chennai";
+const description =
+  "Chennai-based digital agency building high-converting websites, mobile apps, AI automation, SEO and digital marketing. Build. Automate. Scale.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://innovexa.digital"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "INNOVEXA DIGITAL | Build. Automate. Scale.",
+    default: title,
     template: "%s | INNOVEXA DIGITAL"
   },
-  description:
-    "Innovexa Digital transforms businesses through websites, mobile apps, AI automation, digital marketing, and creative content solutions.",
+  description,
+  applicationName: "INNOVEXA DIGITAL",
+  category: "technology",
   keywords: [
     "INNOVEXA DIGITAL",
-    "AI automation",
-    "website development",
+    "digital agency Chennai",
+    "web development Chennai",
+    "website development company",
     "mobile app development",
-    "billing software",
-    "digital marketing",
-    "Chennai digital agency"
+    "AI automation agency",
+    "agentic AI products",
+    "billing software development",
+    "digital marketing Chennai",
+    "Meta ads agency",
+    "SEO services Chennai",
+    "branding and content"
   ],
+  authors: [{ name: "INNOVEXA DIGITAL", url: siteUrl }],
+  creator: "INNOVEXA DIGITAL",
+  publisher: "INNOVEXA DIGITAL",
+  manifest: "/manifest.webmanifest",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false
+  },
+  alternates: {
+    canonical: "/"
+  },
   openGraph: {
-    title: "INNOVEXA DIGITAL | Build. Automate. Scale.",
-    description:
-      "Premium websites, mobile apps, AI automation systems, growth campaigns, and creative digital experiences.",
-    url: "https://innovexa.digital",
+    title,
+    description,
+    url: siteUrl,
     siteName: "INNOVEXA DIGITAL",
+    locale: "en_US",
     type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    creator: "@innovexa_digital",
+    site: "@innovexa_digital"
   },
   robots: {
     index: true,
-    follow: true
-  }
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
+  },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined
 };
 
 export const viewport: Viewport = {
   themeColor: "#02040a",
+  colorScheme: "dark",
   width: "device-width",
-  initialScale: 1
+  initialScale: 1,
+  maximumScale: 5
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "INNOVEXA DIGITAL",
-    url: "https://innovexa.digital",
-    email: "innovexa.digitalservices@gmail.com",
-    telephone: "+91 95660 61075",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Chennai",
-      addressCountry: "IN"
-    },
-    sameAs: [
-      "https://instagram.com/innovexa_digital",
-      "https://linkedin.com/company/innovexa-digital",
-      "https://github.com/innovexa-digital"
-    ],
-    description:
-      "Innovexa Digital transforms businesses through technology, automation, AI, and creative digital experiences."
-  };
-
   return (
-    <html lang="en" className="dark">
-      <body className="noise antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-        {children}
-      </body>
+    <html lang="en" dir="ltr" className={`dark ${inter.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        <JsonLd data={globalGraph()} />
+      </head>
+      <body className="noise antialiased">{children}</body>
     </html>
   );
 }

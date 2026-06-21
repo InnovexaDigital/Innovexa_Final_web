@@ -1,6 +1,5 @@
 "use client";
 
-import emailjs from "@emailjs/browser";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Building2, CheckCircle2, Mail, Phone, Send, ShieldCheck, Sparkles } from "lucide-react";
@@ -13,13 +12,13 @@ const PremiumSelectField = dynamic(() => import("@/components/ui/premium-select-
 });
 
 const inputClassName =
-  "peer h-14 w-full rounded-xl border border-white/10 bg-[#0b1327]/70 px-4 pt-6 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,.05)] outline-none transition placeholder:text-transparent focus:border-cyan-glow/60 focus:bg-[#0c1830]/80 focus:ring-2 focus:ring-cyan-glow/20";
+  "peer h-14 w-full rounded-xl border border-white/10 bg-[#0b1327]/70 px-4 pt-6 text-base text-white shadow-[inset_0_1px_0_rgba(255,255,255,.05)] outline-none transition placeholder:text-transparent focus:border-cyan-glow/60 focus:bg-[#0c1830]/80 focus:ring-2 focus:ring-cyan-glow/20 sm:text-sm";
 
 const labelClassName =
   "pointer-events-none absolute left-4 top-4 text-xs uppercase tracking-[0.16em] text-white/50 transition-all duration-200 peer-placeholder-shown:top-[1.1rem] peer-placeholder-shown:text-sm peer-placeholder-shown:tracking-[0.08em] peer-placeholder-shown:text-white/36 peer-focus:top-4 peer-focus:text-xs peer-focus:tracking-[0.16em] peer-focus:text-cyan-100";
 
 export function Contact() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [serviceNeeded, setServiceNeeded] = useState("");
   const [budgetRange, setBudgetRange] = useState("");
   const [timeline, setTimeline] = useState("");
@@ -45,22 +44,38 @@ export function Contact() {
     setStatus("sending");
 
     const form = event.currentTarget;
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const data = Object.fromEntries(new FormData(form).entries());
 
-    if (serviceId && templateId && publicKey) {
-      await emailjs.sendForm(serviceId, templateId, form, { publicKey });
-    }
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          full_name: data.full_name,
+          company_brand: data.company_brand,
+          email: data.email,
+          phone: data.phone,
+          service: data.service,
+          budget: data.budget,
+          timeline: data.timeline,
+          message: data.message
+        })
+      });
 
-    window.setTimeout(() => {
+      if (!response.ok) throw new Error("request_failed");
+
       setStatus("sent");
       form.reset();
-    }, 700);
+      setServiceNeeded("");
+      setBudgetRange("");
+      setTimeline("");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
-    <section id="contact" className="section-band relative overflow-hidden py-20 sm:py-24 lg:py-26">
+    <section id="contact" className="section-band relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_15%,rgba(34,216,255,.14),transparent_28%),radial-gradient(circle_at_80%_22%,rgba(109,40,217,.17),transparent_34%),radial-gradient(circle_at_58%_80%,rgba(14,165,233,.1),transparent_30%)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[#030712]/80 to-transparent" />
 
@@ -93,8 +108,8 @@ export function Contact() {
             <div className="mt-7 grid grid-cols-2 gap-3 text-left">
               {[
                 { value: "24h", label: "First response time" },
-                { value: "10+", label: "Projects Delivered" },
-                { value: "98%", label: "Client satisfaction" },
+                { value: "6", label: "Projects Delivered" },
+                { value: "96%", label: "Client satisfaction" },
                 { value: "End-to-end", label: "Strategy to deployment" }
               ].map((item) => (
                 <div key={item.label} className="rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur">
@@ -254,18 +269,26 @@ export function Contact() {
                 name="message"
                 rows={4}
                 placeholder="Share your goals, scope, and what success looks like."
-                className="h-36 w-full resize-none rounded-xl border border-white/10 bg-[#0b1327]/70 px-4 py-3 text-sm text-white outline-none transition placeholder:text-white/38 focus:border-cyan-glow/60 focus:bg-[#0c1830]/80 focus:ring-2 focus:ring-cyan-glow/20"
+                className="h-36 w-full resize-none rounded-xl border border-white/10 bg-[#0b1327]/70 px-4 py-3 text-base text-white outline-none transition placeholder:text-white/38 focus:border-cyan-glow/60 focus:bg-[#0c1830]/80 focus:ring-2 focus:ring-cyan-glow/20 sm:text-sm"
                 required
               />
             </div>
 
-            <input type="hidden" name="instagram" value={instagramUrl} />
-            <input type="hidden" name="linkedin" value={linkedinUrl} />
-            <input type="hidden" name="github" value={githubUrl} />
-            <input type="hidden" name="whatsapp" value={`https://wa.me/${whatsappNumber}`} />
           </div>
 
-          {!serviceNeeded || !budgetRange.trim() || !timeline ? (
+          {status === "sent" ? (
+            <p className="mt-4 inline-flex items-center gap-1.5 text-xs text-emerald-300/90">
+              <CheckCircle2 className="h-3.5 w-3.5" /> Thanks! Your request has been received — we&apos;ll be in touch within 24 hours.
+            </p>
+          ) : status === "error" ? (
+            <p className="mt-4 text-xs text-rose-300/85">
+              Something went wrong saving your request. Please try again, or email us at{" "}
+              <a href={`mailto:${company.email}`} className="underline hover:text-rose-200">
+                {company.email}
+              </a>
+              .
+            </p>
+          ) : !serviceNeeded || !budgetRange.trim() || !timeline ? (
             <p className="mt-4 text-xs text-amber-200/75">Choose a service and timeline, and enter your budget to submit.</p>
           ) : null}
 
@@ -276,7 +299,13 @@ export function Contact() {
             disabled={!serviceNeeded || !budgetRange.trim() || !timeline || status === "sending"}
             className="relative mt-6 flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-[linear-gradient(110deg,#1D9BF0,#3B82F6)] text-sm font-bold uppercase tracking-[0.15em] text-white shadow-[0_10px_28px_rgba(59,130,246,.2)] transition hover:bg-[linear-gradient(110deg,#38BDF8,#2563EB)] hover:shadow-[0_12px_34px_rgba(37,99,235,.26)] disabled:opacity-60"
           >
-            {status === "sending" ? "Sending..." : status === "sent" ? "Request Sent" : "Start Your Project"}
+            {status === "sending"
+              ? "Sending..."
+              : status === "sent"
+                ? "Request Sent"
+                : status === "error"
+                  ? "Try Again"
+                  : "Start Your Project"}
             <Send className="h-4 w-4" />
           </motion.button>
 

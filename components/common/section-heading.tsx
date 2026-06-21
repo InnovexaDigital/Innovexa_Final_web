@@ -26,10 +26,10 @@ export function SectionHeading({ eyebrow, title, copy, align = "center" }: Secti
         <Sparkles className="h-3.5 w-3.5" />
         {eyebrow}
       </div>
-      <h2 className="font-display text-4xl font-semibold leading-tight text-white md:text-6xl">
+      <h2 className="font-display text-[1.9rem] font-semibold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
         {title}
       </h2>
-      <p className="mt-5 text-base leading-8 text-white/62 md:text-lg">{copy}</p>
+      <p className="mt-5 text-base leading-7 text-white/62 sm:leading-8 md:text-lg">{copy}</p>
     </div>
   );
 }

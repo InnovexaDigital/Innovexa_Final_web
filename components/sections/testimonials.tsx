@@ -8,9 +8,9 @@ import { SectionHeading } from "@/components/common/section-heading";
 import { useCountUp } from "@/hooks/use-count-up";
 
 const proofStats = [
-  { end: 20, suffix: "+", label: "Happy Clients" },
-  { end: 6, suffix: "+", label: "Industries Served" },
-  { end: 100, suffix: "%", label: "On-Time Delivery" }
+  { end: 3, suffix: "+", label: "Happy Clients" },
+  { end: 5, suffix: "+", label: "Industries Served" },
+  { end: 96, suffix: "%", label: "Client Satisfaction" }
 ];
 
 function CountStat({ end, suffix, label }: { end: number; suffix: string; label: string }) {
@@ -38,12 +38,12 @@ function initials(name: string) {
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="section-band py-28">
+    <section id="testimonials" className="section-band py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="section-shell">
         <SectionHeading
           eyebrow="Social Proof"
-          title="Real businesses. Real results. Real reviews."
-          copy="Verified feedback from clients we have partnered with across web, commerce, education, and creative projects."
+          title="Real businesses. Real results."
+          copy="Direct feedback from clients we have partnered with across web, commerce, education, and creative projects."
         />
 
         <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

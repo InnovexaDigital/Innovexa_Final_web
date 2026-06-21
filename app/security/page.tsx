@@ -1,18 +1,39 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, pageGraph, webPageSchema } from "@/lib/structured-data";
+
+const pageTitle = "Security";
+const pageDescription = "How INNOVEXA DIGITAL keeps your data and communications secure.";
 
 export const metadata: Metadata = {
-  title: "Security",
-  description: "How INNOVEXA DIGITAL keeps your data and communications secure."
+  title: pageTitle,
+  description: pageDescription,
+  alternates: { canonical: "/security" },
+  openGraph: {
+    title: `${pageTitle} | INNOVEXA DIGITAL`,
+    description: pageDescription,
+    url: "/security",
+    type: "article"
+  }
 };
+
+const crumbs = [
+  { name: "Home", path: "/" },
+  { name: "Security", path: "/security" }
+];
 
 export default function SecurityPage() {
   return (
     <main className="min-h-screen px-6 py-24">
+      <JsonLd
+        data={pageGraph([
+          webPageSchema({ path: "/security", name: pageTitle, description: pageDescription }),
+          breadcrumbSchema(crumbs)
+        ])}
+      />
       <div className="mx-auto max-w-2xl">
-        <Link href="/" className="mb-10 inline-flex items-center gap-2 text-sm text-white/50 hover:text-cyan-400">
-          ← Back to home
-        </Link>
+        <Breadcrumbs crumbs={crumbs} />
 
         <h1 className="font-display text-4xl font-semibold text-white">Security</h1>
         <p className="mt-3 text-sm text-white/40">Last updated: June 2026</p>

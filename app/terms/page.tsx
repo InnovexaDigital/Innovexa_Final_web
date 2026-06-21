@@ -1,18 +1,39 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema, pageGraph, webPageSchema } from "@/lib/structured-data";
+
+const pageTitle = "Terms of Service";
+const pageDescription = "Terms and conditions governing the use of INNOVEXA DIGITAL services.";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
-  description: "Terms and conditions governing the use of INNOVEXA DIGITAL services."
+  title: pageTitle,
+  description: pageDescription,
+  alternates: { canonical: "/terms" },
+  openGraph: {
+    title: `${pageTitle} | INNOVEXA DIGITAL`,
+    description: pageDescription,
+    url: "/terms",
+    type: "article"
+  }
 };
+
+const crumbs = [
+  { name: "Home", path: "/" },
+  { name: "Terms of Service", path: "/terms" }
+];
 
 export default function TermsPage() {
   return (
     <main className="min-h-screen px-6 py-24">
+      <JsonLd
+        data={pageGraph([
+          webPageSchema({ path: "/terms", name: pageTitle, description: pageDescription }),
+          breadcrumbSchema(crumbs)
+        ])}
+      />
       <div className="mx-auto max-w-2xl">
-        <Link href="/" className="mb-10 inline-flex items-center gap-2 text-sm text-white/50 hover:text-cyan-400">
-          ← Back to home
-        </Link>
+        <Breadcrumbs crumbs={crumbs} />
 
         <h1 className="font-display text-4xl font-semibold text-white">Terms of Service</h1>
         <p className="mt-3 text-sm text-white/40">Last updated: June 2026</p>

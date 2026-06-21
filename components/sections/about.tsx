@@ -3,13 +3,13 @@ import { SectionHeading } from "@/components/common/section-heading";
 
 export function About() {
   return (
-    <section id="about" className="section-band py-28">
+    <section id="about" className="section-band py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="section-shell grid gap-8 lg:grid-cols-[.9fr_1.1fr]">
         <SectionHeading
           align="left"
           eyebrow="About"
-          title="A technology and creative partner for businesses ready to modernize."
-          copy={`${company.name} transforms businesses through technology, automation, AI, and creative digital experiences. From websites to AI-powered automation, we deliver solutions that combine technology with measurable business growth.`}
+          title="A digital agency in Chennai for businesses ready to modernize."
+          copy={`${company.name} is a Chennai-based technology and creative studio that transforms businesses through automation, AI, and premium digital experiences. From websites to AI-powered automation, we deliver solutions for clients in Chennai and worldwide that combine technology with measurable business growth.`}
         />
         <div data-gsap-reveal className="grid gap-4 sm:grid-cols-2">
           {[

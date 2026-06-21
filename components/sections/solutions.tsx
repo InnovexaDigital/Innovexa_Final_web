@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/common/section-heading";
 
 export function Solutions() {
   return (
-    <section id="ai" className="relative overflow-hidden py-28">
+    <section id="ai" className="relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,212,255,.13),transparent_28%),radial-gradient(circle_at_72%_64%,rgba(139,92,246,.14),transparent_30%)]" />
       <div className="section-shell">
         <SectionHeading
@@ -12,12 +12,12 @@ export function Solutions() {
           copy="We build practical AI systems for lead capture, WhatsApp flows, CRM updates, content pipelines, dashboards, and agentic business operations."
         />
         <div className="grid gap-6 lg:grid-cols-[.92fr_1.08fr]">
-          <div data-gsap-reveal data-tilt className="gradient-border glass-dark relative min-h-[520px] overflow-hidden rounded-[2rem] p-6">
+          <div data-gsap-reveal data-tilt className="gradient-border glass-dark relative min-h-[420px] overflow-hidden rounded-[2rem] p-6 sm:min-h-[520px]">
             <div className="absolute inset-8 rounded-full border border-cyan-glow/20" />
             <div className="absolute inset-20 rounded-full border border-violet-glow/25" />
             <div className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-glow/20 blur-3xl" />
             <div className="relative grid h-full place-items-center">
-              <div className="relative h-72 w-72">
+              <div className="relative h-72 w-72 scale-75 sm:scale-100">
                 <div className="absolute inset-0 rounded-full border border-cyan-glow/35 bg-cyan-glow/5 shadow-glow animate-pulseGlow" />
                 <div className="absolute inset-12 rounded-full border border-violet-glow/35 bg-violet-glow/10 shadow-violet" />
                 <div className="absolute inset-24 rounded-full bg-white text-slate-950 grid place-items-center font-display text-3xl font-black">

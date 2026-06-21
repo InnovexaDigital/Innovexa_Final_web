@@ -8,7 +8,6 @@ import {
   BriefcaseBusiness,
   Brush,
   Camera,
-  ClipboardCheck,
   Clock,
   Code2,
   Compass,
@@ -79,28 +78,37 @@ export const company = {
     "Innovexa Digital transforms businesses through technology, automation, AI, and creative digital experiences.",
   phone: "+91 95660 61075",
   email: "innovexa.digitalservices@gmail.com",
-  location: "Chennai, Tamil Nadu, India",
+  location: "Thirukkazhukundram, Tamil Nadu, India",
+  address: {
+    street: "New Mettu Street",
+    locality: "Thirukkazhukundram",
+    region: "Tamil Nadu",
+    postalCode: "603109",
+    country: "India"
+  },
+  // Approximate coordinates for Thirukkazhukundram, Chengalpattu district.
+  geo: { latitude: 12.6086, longitude: 80.0654 },
   whatsapp: "+91 95660 61075",
   instagram: "innovexa_digital",
   linkedin: "innovexa-digital",
   github: "innovexa-digital",
-  website: "innovexa.digital"
+  website: "innovexadigital.in"
 };
 
 export const navItems = ["Home", "Services", "Portfolio", "About", "Contact"];
 
 export const heroMetrics = [
-  { label: "Projects Delivered", value: "50+" },
-  { label: "Happy Clients", value: "20+" },
-  { label: "Client Satisfaction", value: "98%" },
-  { label: "Support", value: "24/7" }
+  { label: "Projects Delivered", value: "6" },
+  { label: "Happy Clients", value: "3" },
+  { label: "Client Satisfaction", value: "96%" },
+  { label: "Avg. Response", value: "24h" }
 ];
 
 export const stats: TrustStat[] = [
-  { label: "Projects Delivered", value: 50, suffix: "+", icon: Rocket },
-  { label: "Happy Clients", value: 20, suffix: "+", icon: Users },
-  { label: "Client Satisfaction", value: 98, suffix: "%", icon: BadgeCheck },
-  { label: "Support", value: 24, suffix: "/7", icon: Clock }
+  { label: "Projects Delivered", value: 6, suffix: "", icon: Rocket },
+  { label: "Happy Clients", value: 3, suffix: "", icon: Users },
+  { label: "Client Satisfaction", value: 96, suffix: "%", icon: BadgeCheck },
+  { label: "Avg. Response", value: 24, suffix: "h", icon: Clock }
 ];
 
 export const services: Service[] = [
@@ -132,7 +140,7 @@ export const portfolio: PortfolioProject[] = [
     title: "KL Stall App",
     type: "Business Management Platform",
     category: "Web App",
-    image: "/portfolio/kl-stall.png",
+    image: "/portfolio/kl-stall.webp",
     logoLabel: "KL",
     url: "https://k-lstall-app.vercel.app/",
     description: "Digital platform for stall booking and event business management.",
@@ -143,7 +151,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Siva Sakthi Printers",
     type: "Printing Business Website",
     category: "Website",
-    image: "/portfolio/siva-sakthi-printers.png",
+    image: "/portfolio/siva-sakthi-printers.webp",
     logoLabel: "SSP",
     url: "https://sivasakthiprinters.netlify.app/",
     description: "Professional website for printing services and customer engagement.",
@@ -154,7 +162,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Export Demo Site",
     type: "Export Business Website",
     category: "Export",
-    image: "/portfolio/export-demo.png",
+    image: "/portfolio/export-demo.webp",
     logoLabel: "EX",
     url: "https://exportdemosite.netlify.app/",
     description: "Corporate export-focused website built for product showcasing and inquiries.",
@@ -165,7 +173,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Danny Stationary Shop",
     type: "E-Commerce Storefront",
     category: "Commerce",
-    image: "/portfolio/danny-stationary.png",
+    image: "/portfolio/danny-stationary.webp",
     logoLabel: "DS",
     url: "https://danny-stationary-shop.netlify.app/",
     description: "Online shopping website for stationery products and retail sales.",
@@ -176,7 +184,7 @@ export const portfolio: PortfolioProject[] = [
     title: "Galaxy Beauty Academy",
     type: "Education / Academy Website",
     category: "Website",
-    image: "/portfolio/galaxy-beauty-academy.png",
+    image: "/portfolio/galaxy-beauty-academy.webp",
     logoLabel: "GBA",
     url: "https://www.galaxybeautyacademy.com/",
     description: "Professional academy website for beauty training programs and admissions.",

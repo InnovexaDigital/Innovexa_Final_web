@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function Pricing() {
   return (
-    <section id="pricing" className="section-band py-28">
+    <section id="pricing" className="section-band py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="section-shell">
         <SectionHeading
           eyebrow="Engagements"

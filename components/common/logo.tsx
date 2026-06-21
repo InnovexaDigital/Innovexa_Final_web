@@ -8,7 +8,7 @@ type LogoProps = {
   priority?: boolean;
 };
 
-export function Logo({ className, compactText = false, src, priority = true }: LogoProps) {
+export function Logo({ className, compactText = false, src, priority = false }: LogoProps) {
   return (
     <Image
       src={src ?? "/logo/innovexa-logo.png"}

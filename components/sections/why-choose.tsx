@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/common/section-heading";
 
 export function WhyChoose() {
   return (
-    <section className="relative overflow-hidden py-28">
+    <section className="relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="absolute inset-x-0 top-24 h-80 bg-gradient-to-r from-cyan-glow/10 via-violet-glow/10 to-transparent blur-3xl" />
       <div className="section-shell">
         <SectionHeading

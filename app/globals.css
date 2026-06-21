@@ -10,8 +10,7 @@
   --border: 218 35% 18%;
   --input: 218 35% 14%;
   --ring: 190 100% 55%;
-  --font-inter: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-space: "Space Grotesk", "Satoshi", "Clash Display", Inter, ui-sans-serif, system-ui, sans-serif;
+  /* --font-inter and --font-space are injected on <html> by next/font (app/layout.tsx). */
 }
 
 * {
@@ -21,6 +20,12 @@
 html {
   scroll-behavior: auto;
   background: #111317;
+}
+
+/* Fallback anchor offset for when smooth-scroll JS is unavailable */
+section[id],
+footer[id] {
+  scroll-margin-top: 6rem;
 }
 
 body {
@@ -56,9 +61,11 @@ body::before {
     radial-gradient(circle at 78% 12%, rgba(34, 216, 255, 0.14), transparent 22%),
     radial-gradient(circle at 54% 72%, rgba(91, 77, 255, 0.12), transparent 26%),
     conic-gradient(from 120deg at 70% 30%, rgba(34, 216, 255, 0.08), rgba(157, 92, 255, 0.07), rgba(31, 122, 255, 0.06), rgba(34, 216, 255, 0.08));
-  animation: meshDrift 22s ease-in-out infinite alternate, auroraHue 28s linear infinite;
+  /* Only transform is animated (cheap on the compositor). The blur is static — we no
+     longer animate `filter` (hue-rotate), which forced continuous GPU re-rasterization. */
+  animation: meshDrift 22s ease-in-out infinite alternate;
   filter: blur(10px);
-  will-change: transform, filter;
+  will-change: transform;
 }
 
 body::after {
@@ -129,7 +136,7 @@ body::after {
 .noise::after {
   content: "";
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 60;
   opacity: 0.025;
@@ -281,15 +288,6 @@ body::after {
   }
 }
 
-@keyframes auroraHue {
-  0% {
-    filter: blur(10px) hue-rotate(0deg);
-  }
-  100% {
-    filter: blur(10px) hue-rotate(360deg);
-  }
-}
-
 @keyframes particleDrift {
   0% {
     transform: translate3d(0, 0, 0);
@@ -297,6 +295,53 @@ body::after {
   100% {
     transform: translate3d(-32px, -54px, 0);
   }
+}
+
+/* CSS-driven hero entrance — paints on first frame (no JS/hydration gate), so the LCP
+   content appears immediately instead of waiting for a JS animation runtime. */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.reveal-up {
+  animation: revealUp 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+}
+
+/* Transform-only reveal for the LCP heading — it paints at full opacity on the first
+   frame (no opacity gate), so LCP fires immediately while still sliding into place. */
+@keyframes riseUp {
+  from {
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.rise-up {
+  animation: riseUp 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+}
+
+@keyframes revealScale {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reveal-scale {
+  animation: revealScale 0.9s ease-out both;
 }
 
 /* Hero visual: smooth floating motion + orbiting particles */
@@ -372,11 +417,38 @@ body::after {
   display: none;
 }
 
-/* Hidden only when GSAP is active — falls back to visible if JS/ScrollTrigger fails. */
+/* Hidden only when GSAP is active — falls back to visible if JS/ScrollTrigger fails.
+   Uses opacity (not visibility:hidden) so headings stay in the accessibility tree. */
 html.gsap-ready [data-gsap-reveal] {
   opacity: 0;
-  visibility: hidden;
   transform: translateY(28px);
+}
+
+/* On phones, stop the perpetual decorative background animations to free the main
+   thread / GPU (better INP and battery). The static gradients/particles remain. */
+@media (max-width: 768px) {
+  /* Drop the full-viewport blurred aurora/particle layers on phones — they are the most
+     expensive thing to paint and barely visible at this size. Section gradients remain. */
+  body::before,
+  body::after,
+  .noise::after {
+    display: none;
+  }
+  .section-band::after {
+    animation: none;
+  }
+  /* backdrop-filter blur is a major mobile GPU cost (it runs per glass card). Swap it for
+     a slightly more opaque solid fill — visually near-identical on the dark background. */
+  .glass,
+  .glass-dark {
+    backdrop-filter: none;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.09);
+  }
+  .glass-dark {
+    background: rgba(13, 16, 22, 0.92);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

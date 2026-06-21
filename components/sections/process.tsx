@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/common/section-heading";
 
 export function Process() {
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="section-shell">
         <SectionHeading
           eyebrow="Process"
@@ -17,7 +17,7 @@ export function Process() {
               key={title}
               data-gsap-reveal
               data-tilt
-              className="glass-dark relative z-10 min-h-[21rem] rounded-[1.35rem] p-6"
+              className="glass-dark relative z-10 rounded-[1.35rem] p-6 md:min-h-[21rem]"
             >
               <div className="mb-5 flex items-center justify-between gap-3">
                 <div className="grid h-12 w-12 place-items-center rounded-2xl border border-cyan-glow/10 bg-[#0b2b34] text-cyan-glow shadow-[0_0_24px_rgba(18,231,255,.08)]">

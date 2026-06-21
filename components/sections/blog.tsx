@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/common/section-heading";
 
 export function Blog() {
   return (
-    <section id="blog" className="section-band py-28">
+    <section id="blog" className="section-band py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="section-shell">
         <SectionHeading
           eyebrow="Insights"

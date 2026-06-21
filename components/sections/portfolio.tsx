@@ -20,7 +20,7 @@ export function Portfolio() {
   const isComingSoonProject = (item: PortfolioProject) => item.status?.toLowerCase() === "coming soon";
 
   return (
-    <section id="portfolio" className="section-band py-28">
+    <section id="portfolio" className="section-band py-16 sm:py-20 md:py-24 lg:py-28">
       <div className="section-shell">
         <SectionHeading
           eyebrow="Portfolio"
@@ -33,7 +33,7 @@ export function Portfolio() {
               key={category}
               onClick={() => setActive(category)}
               className={cn(
-                "rounded-full border px-4 py-2 text-sm transition",
+                "rounded-full border px-4 py-2.5 text-sm transition",
                 active === category
                   ? "border-sky-400/60 bg-[linear-gradient(110deg,#1D9BF0,#3B82F6)] text-white shadow-[0_0_18px_rgba(59,130,246,.2)]"
                   : "border-white/10 bg-white/5 text-white/60 hover:text-white"
@@ -123,7 +123,7 @@ export function Portfolio() {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-sky-300 transition hover:text-sky-200"
+                      className="mt-3 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-sky-300 transition hover:text-sky-200"
                     >
                       View live project
                       <ArrowUpRight className="h-4 w-4" />
