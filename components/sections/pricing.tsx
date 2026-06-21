@@ -13,7 +13,7 @@ export function Pricing() {
           title="Enterprise-grade outcomes with clear paths to start."
           copy="Choose the launch path that fits your growth stage. Every engagement starts with strategy and ends with a measurable system."
         />
-        <div className="grid gap-5 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-3">
           {pricing.map((plan) => (
             <article
               key={plan.name}

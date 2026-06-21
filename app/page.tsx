@@ -2,6 +2,7 @@ import { AnimationProvider } from "@/components/providers/animation-provider";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { MobileCta } from "@/components/layout/mobile-cta";
 import { Hero } from "@/components/sections/hero";
 import { TrustStats } from "@/components/sections/trust-stats";
 import { Services } from "@/components/sections/services";
@@ -10,6 +11,8 @@ import { Portfolio } from "@/components/sections/portfolio";
 import { Process } from "@/components/sections/process";
 import { WhyChoose } from "@/components/sections/why-choose";
 import { About } from "@/components/sections/about";
+import { Testimonials } from "@/components/sections/testimonials";
+import { Pricing } from "@/components/sections/pricing";
 import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -40,9 +43,12 @@ export default function Home() {
         <Process />
         <About />
         <WhyChoose />
+        <Testimonials />
+        <Pricing />
         <FAQ />
         <Contact />
       </main>
+      <MobileCta />
       <Footer />
     </LenisProvider>
   );

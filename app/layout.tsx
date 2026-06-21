@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { siteUrl } from "@/lib/site-config";
 import { globalGraph } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -103,7 +105,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <JsonLd data={globalGraph()} />
       </head>
-      <body className="noise antialiased">{children}</body>
+      <body className="noise antialiased">
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

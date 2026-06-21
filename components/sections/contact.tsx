@@ -41,9 +41,15 @@ export function Contact() {
       return;
     }
 
+    const form = event.currentTarget;
+
+    // Honeypot: bots fill hidden fields, humans never see them.
+    if ((form.elements.namedItem("company_website") as HTMLInputElement | null)?.value) {
+      return;
+    }
+
     setStatus("sending");
 
-    const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
 
     try {
@@ -69,7 +75,8 @@ export function Contact() {
       setServiceNeeded("");
       setBudgetRange("");
       setTimeline("");
-    } catch {
+    } catch (error) {
+      console.error("Contact form submission failed", error);
       setStatus("error");
     }
   }
@@ -232,18 +239,22 @@ export function Contact() {
               options={contactServices.map((service) => ({ value: service, label: service }))}
             />
 
-            <div className="relative">
-              <input
-                id="budget"
-                name="budget"
-                placeholder="Budget"
-                className={inputClassName}
-                value={budgetRange}
-                onChange={(event) => setBudgetRange(event.target.value)}
-                required
-              />
-              <label htmlFor="budget" className={labelClassName}>Budget (e.g. ₹50,000)</label>
-            </div>
+            <PremiumSelectField
+              id="budget"
+              name="budget"
+              label="Budget"
+              value={budgetRange}
+              onValueChange={setBudgetRange}
+              placeholder="Select budget"
+              options={[
+                { value: "Under ₹50,000", label: "Under ₹50,000" },
+                { value: "₹50,000 – ₹1,00,000", label: "₹50,000 – ₹1,00,000" },
+                { value: "₹1,00,000 – ₹3,00,000", label: "₹1,00,000 – ₹3,00,000" },
+                { value: "₹3,00,000 – ₹5,00,000", label: "₹3,00,000 – ₹5,00,000" },
+                { value: "₹5,00,000+", label: "₹5,00,000+" },
+                { value: "Not sure yet", label: "Not sure yet" }
+              ]}
+            />
 
             <div className="sm:col-span-2">
               <PremiumSelectField
@@ -274,6 +285,15 @@ export function Contact() {
               />
             </div>
 
+            {/* Honeypot — hidden from humans, catches spam bots. */}
+            <input
+              type="text"
+              name="company_website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
           </div>
 
           {status === "sent" ? (
@@ -308,6 +328,17 @@ export function Contact() {
                   : "Start Your Project"}
             <Send className="h-4 w-4" />
           </motion.button>
+
+          {status === "sent" ? (
+            <p className="mt-3 text-sm text-emerald-300/90" role="status">
+              Thanks — your request has been received. We&apos;ll reply within 24 hours.
+            </p>
+          ) : null}
+          {status === "error" ? (
+            <p className="mt-3 text-sm text-rose-300/90" role="alert">
+              Something went wrong sending your request. Please try again or email us at {company.email}.
+            </p>
+          ) : null}
 
           <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-white/48">
             <span className="inline-flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-cyan-glow" /> NDA-friendly process</span>
