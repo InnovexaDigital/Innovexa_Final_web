@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=20.0.0"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -15,7 +15,7 @@
     "optimize:images": "node scripts/optimize-images.mjs"
   },
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",
