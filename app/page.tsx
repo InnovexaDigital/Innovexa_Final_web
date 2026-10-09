@@ -7,7 +7,7 @@ import { Hero } from "@/components/sections/hero";
 import { TrustStats } from "@/components/sections/trust-stats";
 import { Services } from "@/components/sections/services";
 import { Solutions } from "@/components/sections/solutions";
-import { Portfolio } from "@/components/sections/portfolio";
+import { Portfolio } from "@/components/sections/portfolio"; import { FreeAuditSection } from "@/components/sections/free-audit";
 import { Process } from "@/components/sections/process";
 import { WhyChoose } from "@/components/sections/why-choose";
 import { About } from "@/components/sections/about";
@@ -39,7 +39,7 @@ export default function Home() {
         <TrustStats />
         <Services />
         <Solutions />
-        <Portfolio />
+        <Portfolio /><FreeAuditSection />
         <Process />
         <About />
         <WhyChoose />
