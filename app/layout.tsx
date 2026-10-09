@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { siteUrl } from "@/lib/site-config";
 import { globalGraph } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/json-ld";
+import { WhatsAppFloat } from "@/components/layout/whatsapp-float";
 import "./globals.css";
 
 const inter = Inter({
@@ -107,7 +108,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className="noise antialiased">
         {children}
-        <Analytics />
+        <WhatsAppFloat /><Analytics />
         <SpeedInsights />
       </body>
     </html>
