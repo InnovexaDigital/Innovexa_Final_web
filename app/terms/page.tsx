@@ -63,8 +63,8 @@ export default function TermsPage() {
             <h2 className="mb-3 font-display text-xl font-semibold text-white">Contact</h2>
             <p>
               For questions about these terms, contact us at{" "}
-              <a href="mailto:karthikeyan@innovexadigital.in" className="text-cyan-400 hover:underline">
-                karthikeyan@innovexadigital.in
+              <a href="mailto:contact@innovexadigital.in" className="text-cyan-400 hover:underline">
+                contact@innovexadigital.in
               </a>.
             </p>
           </section>

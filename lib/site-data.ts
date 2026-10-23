@@ -80,7 +80,7 @@ export const company = {
   description:
     "Innovexa Digital transforms businesses through technology, automation, AI, and creative digital experiences.",
   phone: "+91 95660 61075",
-  email: "karthikeyan@innovexadigital.in",
+  email: "contact@innovexadigital.in",
   location: "Thirukkazhukundram, Tamil Nadu, India",
   address: {
     street: "100, New Mettu Street",
