@@ -88,8 +88,7 @@ export function organizationSchema(): Schema {
       {
         "@type": "ContactPoint",
         telephone: phoneE164,
-        legalName: company.legalName,
-    email: company.email,
+        email: company.email,
         contactType: "customer support",
         areaServed: ["IN", "Worldwide"],
         availableLanguage: ["English", "Tamil"]
