@@ -52,6 +52,7 @@ export function organizationSchema(): Schema {
     image: `${siteUrl}/og.png`,
     description: company.description,
     slogan: "Build. Automate. Scale.",
+    legalName: company.legalName,
     email: company.email,
     telephone: phoneE164,
     priceRange: "$$",
@@ -87,7 +88,8 @@ export function organizationSchema(): Schema {
       {
         "@type": "ContactPoint",
         telephone: phoneE164,
-        email: company.email,
+        legalName: company.legalName,
+    email: company.email,
         contactType: "customer support",
         areaServed: ["IN", "Worldwide"],
         availableLanguage: ["English", "Tamil"]

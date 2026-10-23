@@ -53,8 +53,8 @@ export default function SecurityPage() {
             <h2 className="mb-3 font-display text-xl font-semibold text-white">Vulnerability Reporting</h2>
             <p>
               If you discover a security issue with our website or services, please report it responsibly to{" "}
-              <a href="mailto:innovexa.digitalservices@gmail.com" className="text-cyan-400 hover:underline">
-                innovexa.digitalservices@gmail.com
+              <a href="mailto:karthikeyan@innovexadigital.in" className="text-cyan-400 hover:underline">
+                karthikeyan@innovexadigital.in
               </a>
               . We will acknowledge and address all valid reports promptly.
             </p>

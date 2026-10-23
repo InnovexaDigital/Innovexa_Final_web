@@ -73,15 +73,18 @@ export type SocialLink = {
 
 export const company = {
   name: "INNOVEXA DIGITAL",
+  // Registered name (Udyam / D-U-N-S); must match those records exactly.
+  legalName: "Innovexa Digital Services",
+  udyam: "UDYAM-TN-34-0124567",
   tagline: "BUILD. AUTOMATE. SCALE.",
   description:
     "Innovexa Digital transforms businesses through technology, automation, AI, and creative digital experiences.",
   phone: "+91 95660 61075",
-  email: "innovexa.digitalservices@gmail.com",
+  email: "karthikeyan@innovexadigital.in",
   location: "Thirukkazhukundram, Tamil Nadu, India",
   address: {
-    street: "New Mettu Street",
-    locality: "Thirukkazhukundram",
+    street: "100, New Mettu Street",
+    locality: "Tirukazhukundram",
     region: "Tamil Nadu",
     postalCode: "603109",
     country: "India"

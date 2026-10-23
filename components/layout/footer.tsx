@@ -87,7 +87,10 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-sm text-white/34 md:flex-row md:items-center">
-          <span>(c) 2026 {company.name}. All rights reserved.</span>
+          <span>
+            (c) 2026 {company.legalName} ({company.name}). All rights reserved.
+            <span className="block text-xs text-white/28">MSME (Udyam) registered: {company.udyam}</span>
+          </span>
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             <a href={`https://${company.website}`} target="_blank" rel="noopener noreferrer" className="py-1.5 transition hover:text-white/55">{company.website}</a>
             <a href="/privacy" className="py-1.5 transition hover:text-white/55">Privacy</a>
